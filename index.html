@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jarreer Sheikh | ML & Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    .space-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 3600s linear infinite;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: 10000px 10000px; }
+    }
+    header {
+      background: transparent;
+      padding: 100px 20px 40px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3.5em;
+      font-family: 'Orbitron', sans-serif;
+      color: #00bcd4;
+      animation: textStartup 4s ease forwards;
+      opacity: 0;
+    }
+    @keyframes textStartup {
+      0% {
+        opacity: 0;
+        filter: blur(6px);
+        transform: translateY(-20px);
+        letter-spacing: 0.3em;
+      }
+      50% {
+        opacity: 0.5;
+        filter: blur(2px);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+        letter-spacing: normal;
+      }
+    }
+    header .subheading {
+      font-size: 1.2em;
+      color: #aaaaaa;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInSlide 2s ease-out forwards;
+      animation-delay: 4s;
+    }
+    .summary-highlight {
+      margin-top: 40px;
+      font-size: 1.1em;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #00bcd4;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    @keyframes fadeInSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .topbar {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      background: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      font-family: 'Orbitron';
+      font-size: 1.4em;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+    .contacts {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+    }
+    .contacts a {
+      color: #00bcd4;
+      font-size: 1.2em;
+      transition: color 0.3s ease;
+    }
+    .contacts a:hover {
+      color: #26c6da;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      background: #111;
+      padding: 14px 0;
+    }
+    nav a {
+      color: #b0bec5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00bcd4;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #00bcd4;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: #1e1e1e;
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+    }
+    .project img {
+      width: 100%;
+      display: block;
+    }
+    .project-content {
+      padding: 20px;
+    }
+    .project-content h3 {
+      margin-top: 0;
+      color: #26c6da;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #1c1c1c;
+      font-size: 0.9em;
+      color: #757575;
+    }
+    a {
+      color: #4dd0e1;
+    }
+    a:hover {
+      color: #26c6da;
+    }
+  </style>
+</head>
+<body>
+  <div class="space-bg"></div>
+  <header>
+    <div class="topbar">
+      <div class="logo">J</div>
+    </div>
+    <div class="contacts">
+      <a href="mailto:jareerfootball7@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/923343323656" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://github.com/Jarreer" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+    <h1>Jarreer Sheikh</h1>
+    <p class="subheading">Machine Learning Enthusiast | Python & C# Developer</p>
+    <div class="summary-highlight">
+      🚀 Passionate about solving real-world problems with intelligent systems. Adept at clean code, scalable architectures, and data-driven decisions.
+    </div>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm <strong>Jarreer Sheikh</strong>, a dedicated Machine Learning developer with advanced Python knowledge and strong experience in C#.
+      I specialize in building data-driven solutions, optimizing algorithms, and creating high-quality software with clean architecture.
+    </p>
+    <p>
+      My goal is to bridge the gap between technology and real-world utility, delivering efficient and meaningful applications.
+    </p>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-gallery">
+      <div class="project">
+        <a href="https://github.com/Jarreer/house-price-predictor" target="_blank">
+          <img src="https://via.placeholder.com/400x200?text=House+Price+Predictor" alt="House Price Predictor Preview">
+        </a>
+        <div class="project-content">
+          <h3>🏠 House Price Predictor</h3>
+          <p>A regression-based ML model using Python and Scikit-learn to predict house prices based on various key features.</p>
+        </div>
+      </div>
+      <div class="project">
+        <img src="https://via.placeholder.com/400x200?text=Dashboard+Coming+Soon" alt="Dashboard Preview">
+        <div class="project-content">
+          <h3>📊 Real-Time Dashboard (Coming Soon)</h3>
+          <p>An interactive analytics dashboard using real-time data streams and ML integration. Designed for high performance and professional deployment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Let's connect and collaborate on exciting tech ideas.
+    </p>
+    <p>
+      📧 <a href="mailto:jareerfootball7@gmail.com">jareerfootball7@gmail.com</a><br>
+      💻 <a href="https://github.com/Jarreer" target="_blank">github.com/Jarreer</a><br>
+      📞 <a href="https://wa.me/923343323656" target="_blank">+92 334 3323656 (WhatsApp)</a>
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Jarreer Sheikh &mdash; Machine Learning Developer | Clean Code Advocate
+  </footer>
+</body>
+</html>

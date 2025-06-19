@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -154,33 +154,52 @@
       gap: 20px;
     }
     .project {
-      background: #1e1e1e;
+      background: linear-gradient(135deg, #1c1c1c, #2c2c2c);
+      border: 1px solid #333;
       padding: 0;
       border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      transform: translateY(40px);
-      opacity: 0;
-      transition: transform 0.6s ease, opacity 0.6s ease;
-    }
-    .project.visible {
-      transform: translateY(0);
-      opacity: 1;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      position: relative;
     }
     .project:hover {
-      transform: scale(1.02);
-      box-shadow: 0 6px 30px rgba(0,0,0,0.6);
+      transform: translateY(-6px);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.8);
     }
     .project img {
       width: 100%;
-      display: block;
+      height: 200px;
+      object-fit: cover;
     }
     .project-content {
       padding: 20px;
+      background: #121212;
+      text-align: left;
     }
     .project-content h3 {
       margin-top: 0;
-      color: #26c6da;
+      color: #00e5ff;
+      font-size: 1.4em;
+    }
+    .project-content p {
+      color: #cccccc;
+      font-size: 0.95em;
+      line-height: 1.5em;
+    }
+    .project-content a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 18px;
+      font-size: 0.95em;
+      background-color: #00bcd4;
+      color: #000;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .project-content a.btn:hover {
+      background-color: #26c6da;
     }
     .download-btn {
       display: inline-block;
@@ -252,46 +271,11 @@
     <h2>Projects</h2>
     <div class="project-gallery">
       <div class="project">
-        <a href="https://github.com/Jarreer/house-price-predictor" target="_blank">
-          <img src="https://via.placeholder.com/400x200?text=House+Price+Predictor" alt="House Price Predictor Preview">
-        </a>
+        <img src="https://via.placeholder.com/400x200?text=House+Price+Predictor" alt="House Price Predictor Preview">
         <div class="project-content">
           <h3>🏠 House Price Predictor</h3>
-          <p>A regression-based ML model using Python and Scikit-learn to predict house prices based on various key features.</p>
-        </div>
-      </div>
-      <div class="project">
-        <a href="https://github.com/Jarreer/stock-market-predictor" target="_blank">
-          <img src="https://via.placeholder.com/400x200?text=Stock+Market+Predictor" alt="Stock Market Predictor Preview">
-        </a>
-        <div class="project-content">
-          <h3>📈 Stock Market Predictor</h3>
-          <p>A time-series forecasting model leveraging LSTM networks in TensorFlow to predict future stock prices with historical trends.</p>
-        </div>
-      </div>
-      <div class="project">
-        <a href="https://github.com/Jarreer/youtube-view-summarizer" target="_blank">
-          <img src="https://via.placeholder.com/400x200?text=YouTube+View+Summarizer" alt="YouTube View Summarizer Preview">
-        </a>
-        <div class="project-content">
-          <h3>🎥 YouTube View Summarizer</h3>
-          <p>An automated tool that fetches YouTube video stats using API and summarizes trends using ML for influencer reporting.</p>
-        </div>
-      </div>
-      <div class="project">
-        <a href="https://github.com/Jarreer/car-price-estimator" target="_blank">
-          <img src="https://via.placeholder.com/400x200?text=Car+Price+Estimator" alt="Car Price Estimator Preview">
-        </a>
-        <div class="project-content">
-          <h3>🚗 Car Price Estimator</h3>
-          <p>ML project using regression algorithms to estimate car prices based on features like mileage, year, and condition.</p>
-        </div>
-      </div>
-      <div class="project">
-        <img src="https://via.placeholder.com/400x200?text=Dashboard+Coming+Soon" alt="Dashboard Preview">
-        <div class="project-content">
-          <h3>📊 Real-Time Dashboard (Coming Soon)</h3>
-          <p>An interactive analytics dashboard using real-time data streams and ML integration. Designed for high performance and professional deployment.</p>
+          <p>A regression-based ML model using Python and Scikit-learn to predict house prices based on features like location, size, and condition. This project is deployed live with an interactive interface for real-time predictions.</p>
+          <a class="btn" href="https://house-price-predictor-pk-ftdtmqfxmqd5rvzuezjykc.streamlit.app/#karachi-house-price-predictor" target="_blank">View Live Project</a>
         </div>
       </div>
     </div>

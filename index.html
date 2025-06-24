@@ -92,7 +92,238 @@
   </div>
 
   <div id="main-content" style="display:none">
-    <body>
+    <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jarreer Sheikh | ML & Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    .space-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 3600s linear infinite;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: 10000px 10000px; }
+    }
+    header {
+      background: transparent;
+      padding: 100px 20px 40px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3.5em;
+      font-family: 'Orbitron', sans-serif;
+      color: #00bcd4;
+      animation: textStartup 4s ease forwards;
+      opacity: 0;
+    }
+    @keyframes textStartup {
+      0% {
+        opacity: 0;
+        filter: blur(6px);
+        transform: translateY(-20px);
+        letter-spacing: 0.3em;
+      }
+      50% {
+        opacity: 0.5;
+        filter: blur(2px);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+        letter-spacing: normal;
+      }
+    }
+    header .subheading {
+      font-size: 1.2em;
+      color: #aaaaaa;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInSlide 2s ease-out forwards;
+      animation-delay: 4s;
+    }
+    .summary-highlight {
+      margin-top: 40px;
+      font-size: 1.1em;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #00bcd4;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    @keyframes fadeInSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .topbar {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      background: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      font-family: 'Orbitron';
+      font-size: 1.4em;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+    .contacts {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+    }
+    .contacts a {
+      color: #00bcd4;
+      font-size: 1.2em;
+      transition: color 0.3s ease;
+    }
+    .contacts a:hover {
+      color: #26c6da;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      background: #111;
+      padding: 14px 0;
+    }
+    nav a {
+      color: #b0bec5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00bcd4;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #00bcd4;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: linear-gradient(135deg, #1c1c1c, #2c2c2c);
+      border: 1px solid #333;
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      position: relative;
+    }
+    .project:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.8);
+    }
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .project-content {
+      padding: 20px;
+      background: #121212;
+      text-align: left;
+    }
+    .project-content h3 {
+      margin-top: 0;
+      color: #00e5ff;
+      font-size: 1.4em;
+    }
+    .project-content p {
+      color: #cccccc;
+      font-size: 0.95em;
+      line-height: 1.5em;
+    }
+    .project-content a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 18px;
+      font-size: 0.95em;
+      background-color: #00bcd4;
+      color: #000;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .project-content a.btn:hover {
+      background-color: #26c6da;
+    }
+    .download-btn {
+      display: inline-block;
+      margin: 40px auto;
+      padding: 12px 24px;
+      background: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {
+      background: #26c6da;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #1c1c1c;
+      font-size: 0.9em;
+      color: #757575;
+    }
+    a {
+      color: #4dd0e1;
+    }
+    a:hover {
+      color: #26c6da;
+    }
+  </style>
+</head>
+<body>
   <div class="space-bg"></div>
   <header>
     <div class="topbar">

@@ -3,380 +3,467 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <!-- Primary Meta Tags -->
-    <title>Muhammad Jarreer - Python Developer</title>
-
-    <meta name="title" content="Muhammad Jarreer - Python Developer">
-    <meta name="description" content="Muhammad Jarreer - Passionate Python Developer creating beautiful and responsive websites. Explore my portfolio and blog for tech insights.">
-    <meta name="keywords" content="Muhammad Jarreer, Web Developer, Python Developer, Portfolio, Blog, Tech Insights">
-    <meta name="author" content="Muhammad Jarreer">
-
-    <!-- Open Graph Meta Tags / Facebook -->
-    <meta property="og:title" content="Muhammad Jarreer - Python Developer">
-    <meta property="og:description" content="Passionate about crafting beautiful and responsive websites. Explore my portfolio and blog for tech insights.">
-    <meta property="og:image" content="https://i.imgur.com/gSA8438.jpeg">
-    <meta property="og:url" content="/">
-    <meta property="og:type" content="website">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Muhammad Jarreer - Python Developer">
-    <meta name="twitter:description" content="Passionate about crafting beautiful and responsive websites. Explore my portfolio and blog for tech insights.">
-    <meta name="twitter:image" content="https://i.imgur.com/gSA8438.jpeg">
-
-    <!-- Favicon -->
-    <link rel="icon" href="https://i.imgur.com/gSA8438.jpeg" type="image/x-icon">
-
-    <!-- Google Fonts: Rubik -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik&amp;display=swap">
-
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+    <title>Muhammad Jarreer - Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --bg-color: #0a192f;
+            --primary-color: #64ffda;
+            --secondary-color: #8892b0;
+            --text-color: #ccd6f6;
+            --card-bg: #112240;
+            --font-sans: 'Calibre', 'San Francisco', 'SF Pro Text', -apple-system, system-ui, sans-serif;
+            --font-mono: 'SF Mono', 'Fira Code', 'Fira Mono', 'Roboto Mono', monospace;
+        }
+
         body {
-            background-color: #1a1a1a;
-            color: #fff;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-sans);
+            margin: 0;
+            padding: 0;
+            -webkit-font-smoothing: antialiased;
         }
-        .primary-bg-btn {
-            background-color: #9370db;
-            border-color: #9370db;
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
-        .theme-button {
-            background-color: #9370db;
-            color: #fff;
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background-color: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: calc(100% - 4rem);
+            top: 0;
+            z-index: 10;
+            transition: top 0.3s;
+        }
+        
+        .logo {
+            font-family: var(--font-mono);
+            color: var(--primary-color);
+            font-size: 1.5rem;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ol {
+            display: flex;
+            align-items: center;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ol li {
+            margin-left: 1.5rem;
+            font-family: var(--font-mono);
+        }
+        
+        nav ol li a {
+            color: var(--text-color);
+            text-decoration: none;
+            counter-increment: item 1;
+            transition: color 0.3s;
+        }
+        
+        nav ol li a::before {
+            content: '0' counter(item) '.';
+            margin-right: 5px;
+            color: var(--primary-color);
+            font-size: 0.9rem;
+        }
+
+        nav ol li a:hover {
+            color: var(--primary-color);
+        }
+
+        .resume-button {
+            color: var(--primary-color);
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-family: var(--font-mono);
+            margin-left: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .resume-button:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        main {
+            padding: 0 150px;
+        }
+
+        section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 100px 0;
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 80px);
+            margin: 0;
+            font-weight: 600;
+            color: #ccd6f6;
+        }
+        
+        .hero h2 {
+            font-size: clamp(40px, 8vw, 80px);
+            margin-top: 10px;
+            color: #8892b0;
+            font-weight: 600;
+        }
+
+        .hero .intro {
+            color: var(--primary-color);
+            font-family: var(--font-mono);
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            max-width: 540px;
+            color: var(--secondary-color);
+            line-height: 1.6;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            font-size: clamp(26px, 5vw, 32px);
+            margin-bottom: 40px;
+            width: 100%;
+            white-space: nowrap;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 300px;
+            height: 1px;
+            background-color: var(--card-bg);
+            margin-left: 20px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            gap: 50px;
+        }
+        
+        .about-text p {
+            line-height: 1.6;
+            color: var(--secondary-color);
+        }
+
+        .skills-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(140px, 200px));
+            padding: 0;
+            margin: 20px 0 0 0;
+            list-style: none;
+            gap: 10px;
+        }
+
+        .skills-list li {
+            position: relative;
+            padding-left: 20px;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            color: var(--secondary-color);
+        }
+
+        .skills-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -15px rgba(2,12,27,0.7);
+        }
+
+        .project-card h3 {
+            color: var(--text-color);
+            margin-top: 0;
+        }
+
+        .project-card .project-description {
+            color: var(--secondary-color);
+        }
+
+        .project-links a {
+            color: var(--secondary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .project-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .contact-section {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-section h2 {
+            font-family: var(--font-mono);
+            color: var(--primary-color);
+            font-size: 1rem;
+        }
+
+        .contact-section .title {
+            font-size: clamp(40px, 5vw, 60px);
+        }
+
+        .contact-section p {
+            color: var(--secondary-color);
+        }
+
+        .email-link {
+            font-family: var(--font-mono);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 1rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 50px;
+            transition: background-color 0.3s;
+        }
+
+        .email-link:hover {
+            background-color: rgba(100, 255, 218, 0.1);
+        }
+
+        .social-sidebar {
+            position: fixed;
+            bottom: 0;
+            left: 40px;
+            width: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .social-sidebar a {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .social-sidebar a:hover {
+            color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+
+        .social-sidebar::after {
+            content: '';
+            display: block;
+            width: 1px;
+            height: 90px;
+            background-color: var(--secondary-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem;
+            font-family: var(--font-mono);
+            color: var(--secondary-color);
+            font-size: 0.8rem;
+        }
+        
+        /* Animation classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
         }
     </style>
-
-    <!-- MS-Clarity Analytics -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "phycesbqlg");
-    </script>
-
 </head>
+<body>
 
-<body data-bs-theme="dark" data-bs-spy="scroll" data-bs-target="#navbar">
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-    
-    <!-- Header -->
-    <header id="header">
-        <nav id="navbar" class="navbar navbar-expand-md">
-            <div class="container">
-                <a href="/" class="navbar-brand logo">
-                    <span><</span>
-                    <span class="logo-name">Muhammad Jarreer</span>
-                    <span>/></span>
-                </a>
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarMenu">
-                    <div class="offcanvas-header">
-                        <a href="/" class="offcanvas-title navbar-brand logo" id="offcanvasNavbarMenu" data-aos="fade-down" data-aos-delay="600">
-                            <span><</span>
-                            <span class="logo-name">Muhammad Jarreer</span>
-                            <span>/></span>
-                        </a>
-                        <button type="button" class="navbar-toggler" data-bs-dismiss="offcanvas" aria-label="Close Navigation Menu"><i class="bi bi-x toggle-icon"></i></button>
-                    </div>
-                    <div class="offcanvas-body">
-                        <ul class="navbar-nav nav-underline justify-content-end flex-grow-1">
-                            <li class="nav-item" data-aos="fade-down" data-aos-delay="500" data-bs-dismiss="offcanvas"><a href="#hero" class="nav-link active" aria-current="page">Home</a></li>
-                            <li class="nav-item" data-aos="fade-down" data-aos-delay="600" data-bs-dismiss="offcanvas"><a href="#about" class="nav-link">About</a></li>
-                            <li class="nav-item" data-aos="fade-down" data-aos-delay="700" data-bs-dismiss="offcanvas" ><a href="#skills" class="nav-link">Skills</a></li>
-                            <li class="nav-item" data-aos="fade-down" data-aos-delay="800" data-bs-dismiss="offcanvas"><a href="#projects" class="nav-link">Projects</a></li>
-                            <li class="nav-item" data-aos="fade-down" data-aos-delay="1000" data-bs-dismiss="offcanvas"><a href="#contact" class="nav-link">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <button class="btn border-0" id="switchTheme" data-aos="fade-down" data-aos-delay="600"><i class="bi bi-brightness-high-fill"></i></button>
-                <button class="navbar-toggler border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle Navigation Menu" data-aos="fade-down" data-aos-delay="600"><i class="bi bi-list toggle-icon"></i></button>
-            </div>
+    <header>
+        <div class="logo">MJ</div>
+        <nav>
+            <ol>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ol>
         </nav>
     </header>
 
-    <!-- Hero -->
-    <section id="hero">
-        <div class="container">     
-            <div class="row about-content">
-                <div class="col-lg-5 order-lg-2">
-                    <div class="hero-portrait">
-                        <img src="https://i.imgur.com/gSA8438.jpeg" class="img-fluid pic" alt="About Me Portrait">
-                    </div>
-                </div>
-                <div class="col-lg-7 order-lg-1 hero-content">
-                    <span class="h3" data-aos="fade-up" data-aos-delay="0">Hi, I am Muhammad Jarreer</span>
-                    <h1 class="name" data-aos="fade-up" data-aos-delay="200"><span>Muhammad Jarreer</h1>
-                    <button type="button" class="btn btn-sm mt-3 mb-3 btn-showcase"  data-aos="fade-up" data-aos-delay="400"><i class="bi bi-stars"></i> Python Developer</button>
-                    <p class="tagline mb-3" data-aos="fade-up" data-aos-delay="600">Started <span class="underline">unintentionally</span> with messy Discord bot templates in 2021. Now, creating beautiful and responsive websites and templates for everyone to explore! But this time <span class="underline">intentionally</span>.</p>
-                    <div class="social-icons pb-2 pt-2 mb-2">
-                        <a href="https://github.com/Jarreer/JARREER" target="_blank" class="github" data-aos="fade-up" data-aos-delay="620"><i class="bi bi-github"></i></a>
-                        <a href="https://www.linkedin.com/in/muhammad-jarreer-2a63a3372/" target="_blank" class="linkedin" data-aos="fade-up" data-aos-delay="690"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                    <div class="d-flex call-to-action">
-                        <a href="#contact" data-aos="fade-up" data-aos-delay="700"><button type="button" class="btn me-4 primary-bg-btn"><i class="bi bi-envelope"></i> Contact Me</button></a>
-                        <a href="#projects" data-aos="fade-up" data-aos-delay="800"><button type="button" class="btn btn-light secondary-bg-btn">View Portfolio <i class="bi bi-arrow-up-right-circle"></i></button></a>
-                    </div>
+    <div class="social-sidebar">
+        <a href="https://github.com/Jarreer/JARREER" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/muhammad-jarreer-2a63a3372/" target="_blank"><i class="fab fa-linkedin"></i></a>
+    </div>
+
+    <main class="container">
+        <section id="hero" class="hero">
+            <p class="intro fade-in">Hi, my name is</p>
+            <h1 class="fade-in">Muhammad Jarreer.</h1>
+            <h2 class="fade-in">I build things for the web.</h2>
+            <p class="fade-in">I'm a passionate Machine Learning Engineer dedicated to building intelligent solutions that make an impact. Currently, I'm focused on developing accessible, human-centered products.</p>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Hello! I'm Muhammad Jarreer, a machine learning engineer based in Pakistan. I enjoy creating things that live on the internet, whether that be websites, applications, or anything in between. My goal is to always build products that provide pixel-perfect, performant experiences.</p>
+                    <p>I am a results-oriented Machine Learning Engineer with a proven track record of developing and deploying innovative AI solutions. My expertise lies in building robust models for various applications, including natural language processing, computer vision, and predictive analytics.</p>
+                    <p>Here are a few technologies I've been working with recently:</p>
+                    <ul class="skills-list">
+                        <li>Python</li>
+                        <li>Scikit-learn</li>
+                        <li>Pandas</li>
+                        <li>NumPy</li>
+                        <li>HTML & CSS</li>
+                        <li>Java</li>
+                        <li>OpenAI API</li>
+                        <li>ML Tools</li>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Things I Love -->
-    <section id="things-i-love">
-        <div class="container">
-            <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">Interests</span></h6>
-            <h2 class="section-heading text-center">Things I Love</h2>
-            <div class="row justify-content-center pt-3 gy-4">
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" >
-                    <div class="card">
-                        <div class="circle-container">
-                            <div class="circle"><i class="bi bi-droplet-half"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-title">Designing</p>
-                            <p class="card-text">I love designing. When I see something that needs improvement, I enjoy making it better visually. I pay attention to every detail, whether it's a graphic or a user interface. My goal is to create designs that catch the eye and inspire others.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" >
-                    <div class="card">
-                        <div class="circle-container">
-                            <div class="circle"><i class="bi bi-code-slash"></i></i></div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-title">Developing</p>
-                            <p class="card-text">After designing, I dive into development. Coding is where I bring designs to life, turning concepts into digital experiences. Each line of code reflects my vision for functionality and elegance, showcasing my commitment to excellence.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6" data-aos="fade-up" >
-                    <div class="card">
-                        <div class="circle-container">
-                            <div class="circle"><i class="bi bi-cup-hot"></i></div>
-                        </div>
-                        <div class="card-body">
-                            <p class="card-title">Expanding</p>
-                            <p class="card-text">Expanding beyond creation, I optimize. From templates to full websites, I refine post-development. Leveraging blogging and basic SEO, I enhance visibility and impact online. Each step maximizes reach and effectiveness online.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- About Me -->
-    <section id="about">
-        <div class="container">
-            <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">But who am I?</span></h6>
-            <h2 class="section-heading text-center">About Me</h2>
-            <p class="text-center muted-text mt-3 mb-4">My store in a nutshell ;)</p>
-            <div class="row justify-content-center" data-aos="fade-down" data-aos-delay="200">
-                <div class="col-lg-5 about-portrait">
-                    <div style="width:100%;height:0;padding-bottom:56%;position:relative;"><iframe src="https://giphy.com/embed/kH6QpWz2e2nAJU4z6H" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe></div><p><a href="https://giphy.com/gifs/kH6QpWz2e2nAJU4z6H">via GIPHY</a></p>
-                </div>
-                <div class="col-lg-7">
-                    <p class="bio">
-                        I am a passionate and results-oriented Machine Learning Engineer with a proven track record of developing and deploying innovative AI solutions. My expertise lies in building robust models for various applications, including natural language processing, computer vision, and predictive analytics. I am proficient in Python and its ecosystem of libraries, including Scikit-learn, Pandas, and NumPy, and have hands-on experience with deep learning frameworks like TensorFlow and PyTorch. I am a quick learner, a collaborative team player, and am always eager to tackle new challenges and contribute to cutting-edge projects.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container">
-            <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">What do I know?</span></h6>
-            <h2 class="section-heading text-center">Skills</h2>
-            <p class="text-center muted-text mt-3 mb-4">Here are some of the technologies that are part of my current stack:</p>
-            <div class="row justify-content-center row-cols-2 row-cols-md-3 row-cols-lg-6 mt-4 gy-4 skills-container" data-aos="fade-up" data-aos-delay="200">
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">Python</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">Scikit-learn</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">Pandas</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">NumPy</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">HTML</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">CSS</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">Java</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">OpenAI API</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="skill">
-                        <p class="skill-name">ML tools</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Tools -->
-    <section id="tools">
-        <div class="container">
-            <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">What I uses?</span></h6>
-            <h2 class="section-heading text-center">Tools</h2>
-            <p class="text-center muted-text mt-3 mb-4">Tech stack known? Here are tools that I runs:</p>
-            <div class="row justify-content-center row-cols-2 row-cols-md-3 row-cols-lg-6 mt-4 gy-4 tools-container" data-aos="fade-down" data-aos-delay="200">
-                <div class="col">
-                    <div class="tool">
-                        <img class="tool-image" src="https://i.imgur.com/gSA8438.jpeg" alt="VSCode">
-                        <p class="tool-name">VSCode</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tool">
-                        <img class="tool-image" src="https://i.imgur.com/gSA8438.jpeg" alt="Github">
-                        <p class="tool-name">Github</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tool">
-                        <img class="tool-image" src="https://i.imgur.com/gSA8438.jpeg" alt="Canva">
-                        <p class="tool-name">Canva</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tool">
-                        <img class="tool-image" src="https://i.imgur.com/gSA8438.jpeg" alt="Figma">
-                        <p class="tool-name">Figma</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tool">
-                        <img class="tool-image" src="https://i.imgur.com/gSA8438.jpeg" alt="ChatGPT">
-                        <p class="tool-name">ChatGPT</p>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="tool">
-                        <img class="tool-image" src="https://i.imgur.com/gSA8438.jpeg" alt="Gemini">
-                        <p class="tool-name">Gemini</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timelines 
-    <section id="timelines">
-        <div class="container">
-            <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">What am Doing?</span></h6>
-            <h2 class="section-heading text-center">Timelines</h2>
-            <div class="row justify-content-center row-cols-2 row-cols-md-3 row-cols-lg-6 skills-container">
-                <div class="col">
-                </div>
-            </div>
-        </div>
-    </section> -->
+        <section id="projects">
+            <h2 class="section-title">Some Things I've Built</h2>
             
-
-    <!-- Projects -->
-    <section id="projects">
-        <div class="container">
-            <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">What I've done?</span></h6>
-            <h2 class="section-heading text-center">Projects</h2>
-            <div class="row justify-content-center mt-4 gy-4" data-aos="fade-up" data-aos-delay="200">
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="col-7 p-0">
-                                    <a href="https://house-price-predictor-pk-ftdtmqfxmqd5rvzuezjykc.streamlit.app/#karachi-house-price-predictor" class="card-title title" target="_blank">House Price Predictor</a>
-                                </div>
-                                <div class="col-3 align-middle">
-                                    <a href="https://house-price-predictor-pk-ftdtmqfxmqd5rvzuezjykc.streamlit.app/#karachi-house-price-predictor" class="btn btn-sm primary-bg-btn rounded-5" target="_blank">Visit <i class="bi bi-arrow-up-right-circle-fill"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div class="project-card">
+                <h3>House Price Predictor</h3>
+                <div class="project-description">
+                    <p>A web application that predicts house prices based on various features. This project showcases my ability to build end-to-end machine learning applications, from data preprocessing to model deployment using Streamlit.</p>
                 </div>
-
-                <div class="col-lg-4 col-md-6">
-                    <div class="card project-card">
-                        <div class="card-body">
-                            <div class="d-flex align-items-center">
-                                <div class="col-7 p-0">
-                                    <a href="https://smart-resume-screener-a8awrcndc99f9jzkpvntot.streamlit.app/" class="card-title title" target="_blank">Smart Resume Screener</a>
-                                </div>
-                                <div class="col-3 align-middle">
-                                    <a href="https://smart-resume-screener-a8awrcndc99f9jzkpvntot.streamlit.app/" class="btn btn-sm primary-bg-btn rounded-5" target="_blank">Visit <i class="bi bi-arrow-up-right-circle-fill"></i></a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="project-links">
+                    <a href="https://house-price-predictor-pk-ftdtmqfxmqd5rvzuezjykc.streamlit.app/#karachi-house-price-predictor" target="_blank"><i class="fas fa-external-link-alt"></i></a>
                 </div>
             </div>
-        </div>
-    </section>
 
+            <div class="project-card">
+                <h3>Smart Resume Screener</h3>
+                <div class="project-description">
+                    <p>An intelligent system to screen and rank resumes based on job descriptions using Natural Language Processing techniques. This tool helps recruiters to efficiently find the best candidates for a job.</p>
+                </div>
+                <div class="project-links">
+                    <a href="https://smart-resume-screener-a8awrcndc99f9jzkpvntot.streamlit.app/" target="_blank"><i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </section>
 
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container">
-            <h6 class="text-center"><span class="btn btn-sm theme-button theme-text">What's next!</span></h6>
-            <h2 class="section-heading text-center">Get In Touch</h2>
-            <p class="text-center muted-text mt-3 mb-4">Phone: +923343323656</p>
-            <p class="text-center muted-text mt-3 mb-4">Gmail: jareerfootball7@gmail.com</p>
-        </div>
-    </section>
+        <section id="contact" class="contact-section">
+            <h2>What's Next?</h2>
+            <h3 class="title">Get In Touch</h3>
+            <p>I'm currently looking for new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!</p>
+            <p>Phone: +923343323656</p>
+            <a href="mailto:jareerfootball7@gmail.com" class="email-link">Say Hello</a>
+        </section>
+    </main>
 
-    <!-- Footer -->
-    <footer id="footer">
-        <div class="container">
-            <p class="text-center copyright-text">Made with <span>Bootstrap, HTML, CSS, JS</span> and a dash of <span class="heart-icon"><i class="bi bi-hearts"></i></span> by <span>Muhammad Jarreer</span>.</p>
-        </div>
+    <footer>
+        <div>Designed & Built by Muhammad Jarreer</div>
     </footer>
 
-    <button class="btn" id="backToTopButton" onclick="scrollToTop()" style="display: none;">
-        <span aria-label="Back to top">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-up-square" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M15 2a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1zM0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm8.5 9.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707z"/>
-              </svg>
-        </span>
-    </button>
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
 
-    <!-- JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js" defer></script>
+        // Animate header
+        const showAnim = gsap.from('header', { 
+            yPercent: -100,
+            paused: true,
+            duration: 0.2
+        }).progress(1);
 
+        ScrollTrigger.create({
+            start: "top top",
+            end: 99999,
+            onUpdate: (self) => {
+                self.direction === -1 ? showAnim.play() : showAnim.reverse()
+            }
+        });
+
+        // Animate sections on scroll
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    end: 'bottom 20%',
+                    toggleActions: 'play none none none',
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+        
+        // Hero animation
+        gsap.timeline()
+            .to('.hero .fade-in', {
+                opacity: 1,
+                y: 0,
+                duration: 0.6,
+                stagger: 0.2,
+                ease: 'power3.out',
+                delay: 0.5
+            });
+
+        // Animate project cards
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach(card => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top 85%',
+                },
+                opacity: 0,
+                y: 50,
+                duration: 0.8,
+                ease: 'power3.out'
+            });
+        });
+        
+        // Animate social sidebar
+        gsap.from('.social-sidebar', {
+            opacity: 0,
+            x: -20,
+            duration: 1,
+            delay: 1.5
+        });
+
+    </script>
 </body>
 </html>

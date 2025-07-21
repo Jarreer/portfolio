@@ -12,11 +12,14 @@
       padding: 0;
       font-family: 'Roboto', sans-serif;
     }
+#preloader {
+  transition: opacity 0.8s ease-in-out;
+}
 .loader-spinner {
-  animation: rotate 1.5s linear infinite;
+  animation: rotate 2s linear infinite;
 }
 .loader-spinner circle {
-  stroke-dasharray: 80, 200;
+  stroke-dasharray: 90, 150;
   stroke-dashoffset: 0;
   animation: dash 1.5s ease-in-out infinite;
 }
@@ -31,12 +34,12 @@
     stroke-dashoffset: 0;
   }
   50% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -35px;
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -35;
   }
   100% {
-    stroke-dasharray: 89, 200;
-    stroke-dashoffset: -124px;
+    stroke-dasharray: 90, 200;
+    stroke-dashoffset: -124;
   }
 }
 @keyframes fadeOut {
@@ -470,7 +473,7 @@ window.addEventListener('load', () => {
       loader.style.display = 'none';
       mainContent.style.display = 'block';
     });
-  }, 1500);
+  }, 2000);
 });
 </script>
 </body>

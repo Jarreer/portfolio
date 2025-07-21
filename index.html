@@ -1,462 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammad Jarreer - ML Engineer</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto+Mono:wght@300;400&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #0a192f;
-            --primary-color: #64ffda;
-            --secondary-color: #8892b0;
-            --text-color: #ccd6f6;
-            --card-bg: #112240;
-            --font-sans: 'Inter', sans-serif;
-            --font-mono: 'Roboto Mono', monospace;
-        }
-
-        *,
-        *::before,
-        *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-sans);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 2rem;
-            background-color: rgba(10, 25, 47, 0.85);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            transition: top 0.3s ease-out;
-        }
-
-        .logo {
-            font-family: var(--font-mono);
-            color: var(--primary-color);
-            font-size: 1.75rem;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-        nav ol {
-            display: flex;
-            align-items: center;
-            list-style: none;
-        }
-
-        nav ol li {
-            margin-left: 2rem;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-        }
-
-        nav ol li a {
-            color: var(--text-color);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        nav ol li a:hover {
-            color: var(--primary-color);
-        }
-
-        main {
-            padding: 0 100px;
-        }
-
-        section {
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 120px 0;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero {
-            text-align: left;
-        }
-
-        .hero .intro {
-            color: var(--primary-color);
-            font-family: var(--font-mono);
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .hero h1 {
-            font-size: clamp(40px, 8vw, 70px);
-            font-weight: 700;
-            color: var(--text-color);
-            margin: 0;
-        }
-
-        .hero h2 {
-            font-size: clamp(40px, 8vw, 70px);
-            font-weight: 700;
-            color: var(--secondary-color);
-            margin-top: 0.5rem;
-        }
-
-        .hero p {
-            max-width: 550px;
-            color: var(--secondary-color);
-            margin-top: 1.5rem;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            font-size: clamp(24px, 5vw, 32px);
-            font-weight: 600;
-            margin-bottom: 40px;
-            width: 100%;
-            white-space: nowrap;
-        }
-
-        .section-title span {
-            font-family: var(--font-mono);
-            color: var(--primary-color);
-            font-size: 1.2rem;
-            margin-right: 10px;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            height: 1px;
-            background-color: #233554;
-            margin-left: 20px;
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 50px;
-        }
-
-        .about-text p {
-            color: var(--secondary-color);
-            margin-bottom: 1rem;
-        }
-
-        .skills-list {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(140px, 200px));
-            list-style: none;
-            gap: 10px;
-            margin-top: 20px;
-        }
-
-        .skills-list li {
-            position: relative;
-            padding-left: 20px;
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-        }
-
-        .skills-list li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary-color);
-        }
-
-        .project-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
-        }
-
-        .project-card {
-            background-color: var(--card-bg);
-            padding: 2rem;
-            border-radius: 4px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-card:hover {
-            transform: translateY(-7px);
-            box-shadow: 0 20px 30px -15px rgba(2, 12, 27, 0.7);
-        }
-
-        .project-card h3 {
-            color: var(--text-color);
-            margin-top: 0;
-            font-size: 1.5rem;
-        }
-
-        .project-description {
-            color: var(--secondary-color);
-            flex-grow: 1;
-        }
-
-        .project-tech-list {
-            display: flex;
-            flex-wrap: wrap;
-            list-style: none;
-            margin-top: 1rem;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--secondary-color);
-        }
-
-        .project-tech-list li {
-            margin-right: 15px;
-        }
-
-        .project-links a {
-            color: var(--secondary-color);
-            margin-top: 1rem;
-            font-size: 1.2rem;
-            transition: color 0.3s;
-            text-decoration: none;
-        }
-
-        .project-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .contact-section {
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact-section .subtitle {
-            font-family: var(--font-mono);
-            color: var(--primary-color);
-            font-size: 1rem;
-        }
-
-        .contact-section .title {
-            font-size: clamp(40px, 5vw, 60px);
-            color: var(--text-color);
-        }
-
-        .contact-section p {
-            color: var(--secondary-color);
-        }
-
-        .email-link {
-            font-family: var(--font-mono);
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-            padding: 1rem 1.75rem;
-            border-radius: 4px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 50px;
-            transition: background-color 0.3s;
-        }
-
-        .email-link:hover {
-            background-color: rgba(100, 255, 218, 0.1);
-        }
-
-        .social-sidebar {
-            position: fixed;
-            bottom: 0;
-            left: 40px;
-            width: 40px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            list-style: none;
-        }
-
-        .social-sidebar li a {
-            padding: 10px;
-            display: inline-block;
-            color: var(--secondary-color);
-            font-size: 1.2rem;
-            transition: color 0.3s, transform 0.3s;
-        }
-
-        .social-sidebar li a:hover {
-            color: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .social-sidebar::after {
-            content: '';
-            display: block;
-            width: 1px;
-            height: 90px;
-            background-color: var(--secondary-color);
-            margin-top: 10px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.5rem;
-            font-family: var(--font-mono);
-            color: var(--secondary-color);
-            font-size: 0.8rem;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jarreer Sheikh | ML & Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', sans-serif;
+    }
+    .loader-wrapper {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      background-color: #0a0a0a;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      animation: fadeOut 1s ease-out 3s forwards;
+    }
+    .logo-container {
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(circle at center, #00bcd4, #008c9e);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 30px #00bcd4, 0 0 60px #008c9e, 0 0 90px #00bcd4;
+      animation: glowPulse 3s infinite ease-in-out, fadeInLogo 1.5s ease-out forwards;
+    }
+    .logo-letter {
+      font-size: 3em;
+      color: #000;
+      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      text-shadow: 0 0 10px rgba(0,188,212,0.8);
+    }
+    .loader-name {
+      font-size: 2.5em;
+      background: linear-gradient(to right, #00bcd4, #00e5ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 0.15em;
+      margin-top: 20px;
+      opacity: 0;
+      animation: revealText 1s ease-out 2s forwards;
+    }
+    .underline {
+      width: 180px;
+      height: 3px;
+      background: linear-gradient(to right, #00e5ff, #00bcd4);
+      margin: 12px auto 0;
+      opacity: 0;
+      transform-origin: left;
+      animation: expandUnderline 1.2s ease-out 3s forwards;
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+    @keyframes fadeInLogo {
+      0% { opacity: 0; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 30px #00bcd4, 0 0 60px #008c9e, 0 0 90px #00bcd4; }
+      50% { box-shadow: 0 0 40px #00bcd4, 0 0 80px #008c9e, 0 0 120px #00bcd4; }
+    }
+    @keyframes revealText {
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes expandUnderline {
+      0% { opacity: 0; transform: scaleX(0); }
+      100% { opacity: 1; transform: scaleX(1); }
+    }
+  </style>
 </head>
 <body>
+  <div class="loader-wrapper">
+    <div class="logo-container">
+      <div class="logo-letter">J</div>
+    </div>
+    <div class="loader-name">Jarreer Sheikh</div>
+    <div class="underline"></div>
+  </div>
 
-    <header>
-        <a href="/" class="logo">MJ</a>
-        <nav>
-            <ol>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ol>
-        </nav>
-    </header>
+  <div id="main-content" style="display:none">
+    <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jarreer Sheikh | ML & Software Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #000;
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+    .space-bg {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+      background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+      animation: moveStars 3600s linear infinite;
+      z-index: -1;
+      top: 0;
+      left: 0;
+    }
+    @keyframes moveStars {
+      0% { background-position: 0 0; }
+      100% { background-position: 10000px 10000px; }
+    }
+    header {
+      background: transparent;
+      padding: 100px 20px 40px;
+      text-align: center;
+      position: relative;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3.5em;
+      font-family: 'Orbitron', sans-serif;
+      color: #00bcd4;
+      animation: textStartup 4s ease forwards;
+      opacity: 0;
+    }
+    @keyframes textStartup {
+      0% {
+        opacity: 0;
+        filter: blur(6px);
+        transform: translateY(-20px);
+        letter-spacing: 0.3em;
+      }
+      50% {
+        opacity: 0.5;
+        filter: blur(2px);
+      }
+      100% {
+        opacity: 1;
+        filter: blur(0);
+        transform: translateY(0);
+        letter-spacing: normal;
+      }
+    }
+    header .subheading {
+      font-size: 1.2em;
+      color: #aaaaaa;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fadeInSlide 2s ease-out forwards;
+      animation-delay: 4s;
+    }
+    .summary-highlight {
+      margin-top: 40px;
+      font-size: 1.1em;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #111;
+      padding: 20px;
+      border-left: 4px solid #00bcd4;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+    @keyframes fadeInSlide {
+      0% {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .topbar {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo {
+      background: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      font-family: 'Orbitron';
+      font-size: 1.4em;
+      padding: 6px 10px;
+      border-radius: 8px;
+    }
+    .contacts {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      display: flex;
+      gap: 15px;
+    }
+    .contacts a {
+      color: #00bcd4;
+      font-size: 1.2em;
+      transition: color 0.3s ease;
+    }
+    .contacts a:hover {
+      color: #26c6da;
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      background: #111;
+      padding: 14px 0;
+    }
+    nav a {
+      color: #b0bec5;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #00bcd4;
+    }
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h2 {
+      color: #00bcd4;
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .project {
+      background: linear-gradient(135deg, #1c1c1c, #2c2c2c);
+      border: 1px solid #333;
+      padding: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      position: relative;
+    }
+    .project:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 30px rgba(0,0,0,0.8);
+    }
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .project-content {
+      padding: 20px;
+      background: #121212;
+      text-align: left;
+    }
+    .project-content h3 {
+      margin-top: 0;
+      color: #00e5ff;
+      font-size: 1.4em;
+    }
+    .project-content p {
+      color: #cccccc;
+      font-size: 0.95em;
+      line-height: 1.5em;
+    }
+    .project-content a.btn {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 10px 18px;
+      font-size: 0.95em;
+      background-color: #00bcd4;
+      color: #000;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
+    }
+    .project-content a.btn:hover {
+      background-color: #26c6da;
+    }
+    .download-btn {
+      display: inline-block;
+      margin: 40px auto;
+      padding: 12px 24px;
+      background: #00bcd4;
+      color: #000;
+      font-weight: bold;
+      border-radius: 8px;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+    .download-btn:hover {
+      background: #26c6da;
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      background: #1c1c1c;
+      font-size: 0.9em;
+      color: #757575;
+    }
+    a {
+      color: #4dd0e1;
+    }
+    a:hover {
+      color: #26c6da;
+    }
+  </style>
+</head>
+<body>
+  <div class="space-bg"></div>
+  <header>
+    <div class="topbar">
+      <div class="logo">J</div>
+    </div>
+    <div class="contacts">
+      <a href="mailto:jareerfootball7@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+      <a href="https://wa.me/923343323656" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://github.com/Jarreer" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+    <h1>Jarreer Sheikh</h1>
+    <p class="subheading">Machine Learning Enthusiast | Python & C# Developer</p>
+    <div class="summary-highlight">
+      🚀 Passionate about solving real-world problems with intelligent systems. Adept at clean code, scalable architectures, and data-driven decisions.
+    </div>
+  </header>
 
-    <ul class="social-sidebar">
-        <li><a href="https://github.com/Jarreer/JARREER" target="_blank" aria-label="GitHub"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg></a></li>
-        <li><a href="https://www.linkedin.com/in/muhammad-jarreer-2a63a3372/" target="_blank" aria-label="LinkedIn"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 114.75 6.5 1.75 1.75 0 016.5 8.25zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.62 1.62 0 0013 14.19a.48.48 0 000 .26V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.1 1.16 3.1 4.44z"></path></svg></a></li>
-    </ul>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
-    <main class="container">
-        <section id="hero" class="hero">
-            <p class="intro">Hi, my name is</p>
-            <h1>Muhammad Jarreer.</h1>
-            <h2>I build intelligent solutions.</h2>
-            <p>I'm a machine learning engineer specializing in building (and occasionally designing) exceptional digital experiences. Currently, I’m focused on building accessible, human-centered products.</p>
-        </section>
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm <strong>Jarreer Sheikh</strong>, a dedicated Machine Learning developer with advanced Python knowledge and strong experience in C#.
+      I specialize in building data-driven solutions, optimizing algorithms, and creating high-quality software with clean architecture.
+    </p>
+    <p>
+      My goal is to bridge the gap between technology and real-world utility, delivering efficient and meaningful applications.
+    </p>
+    <a class="download-btn" href="Jarreer_Resume.pdf" download>⬇ Download Resume</a>
+  </section>
 
-        <section id="about">
-            <h2 class="section-title"><span>01.</span>About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Hello! I'm Muhammad Jarreer, a machine learning engineer based in Pakistan. I have a passion for developing intelligent systems and applications that can solve real-world problems. My journey into the world of AI and machine learning began with a deep curiosity for how machines can learn and make decisions.</p>
-                    <p>I have a solid foundation in software engineering principles and I am proficient in Python and its ecosystem of libraries. I enjoy the process of taking a concept from an idea to a fully deployed application, and I'm always eager to learn new technologies and methodologies to improve my craft.</p>
-                    <p>Here are a few technologies I’ve been working with recently:</p>
-                    <ul class="skills-list">
-                        <li>Python</li>
-                        <li>Scikit-learn</li>
-                        <li>Pandas & NumPy</li>
-                        <li>TensorFlow & PyTorch</li>
-                        <li>HTML & CSS</li>
-                        <li>Java</li>
-                        <li>OpenAI API</li>
-                        <li>Streamlit</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="project-gallery">
+      <div class="project">
+        <img src="https://via.placeholder.com/400x200?text=House+Price+Predictor" alt="House Price Predictor Preview">
+        <div class="project-content">
+          <h3>🏠 House Price Predictor</h3>
+          <p>A regression-based ML model using Python and Scikit-learn to predict house prices based on features like location, size, and condition. This project is deployed live with an interactive interface for real-time predictions.</p>
+          <a class="btn" href="https://house-price-predictor-pk-ftdtmqfxmqd5rvzuezjykc.streamlit.app/#karachi-house-price-predictor" target="_blank">View Live Project</a>
+        </div>
+      </div>
+      <div class="project">
+      <img src="https://via.placeholder.com/400x200?text=Resume+Screener" alt="Smart Resume Screener Preview">
+      <div class="project-content">
+        <h3>📄 Smart Resume Screener</h3>
+        <p>An intelligent resume analysis tool that uses machine learning and GPT-based summarization to evaluate resumes, extract skills, and score candidates. Supports PDF uploads and provides recruiter-friendly outputs.</p>
+        <a class="btn" href="https://smart-resume-screener-a8awrcndc99f9jzkpvntot.streamlit.app/" target="_blank">View Live Project</a>
+      </div>
+    </div>
+    </div>
+  </section>
 
-        <section id="projects">
-            <h2 class="section-title"><span>02.</span>Some Things I've Built</h2>
-            <div class="project-grid">
-                <div class="project-card">
-                    <h3>House Price Predictor</h3>
-                    <div class="project-description">
-                        <p>A web application that predicts house prices based on various features. This project showcases my ability to build end-to-end machine learning applications, from data preprocessing to model deployment using Streamlit.</p>
-                    </div>
-                    <ul class="project-tech-list">
-                        <li>Python</li>
-                        <li>Streamlit</li>
-                        <li>Scikit-learn</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://house-price-predictor-pk-ftdtmqfxmqd5rvzuezjykc.streamlit.app/#karachi-house-price-predictor" target="_blank" aria-label="External Link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <h3>Smart Resume Screener</h3>
-                    <div class="project-description">
-                        <p>An intelligent system to screen and rank resumes based on job descriptions using Natural Language Processing techniques. This tool helps recruiters to efficiently find the best candidates for a job.</p>
-                    </div>
-                    <ul class="project-tech-list">
-                        <li>Python</li>
-                        <li>Streamlit</li>
-                        <li>NLTK</li>
-                        <li>Spacy</li>
-                    </ul>
-                    <div class="project-links">
-                        <a href="https://smart-resume-screener-a8awrcndc99f9jzkpvntot.streamlit.app/" target="_blank" aria-label="External Link">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"></path><path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>
+      Let's connect and collaborate on exciting tech ideas.
+    </p>
+    <p>
+      📧 <a href="mailto:jareerfootball7@gmail.com">jareerfootball7@gmail.com</a><br>
+      💻 <a href="https://github.com/Jarreer" target="_blank">github.com/Jarreer</a><br>
+      📞 <a href="https://wa.me/923343323656" target="_blank">+92 334 3323656 (WhatsApp)</a>
+    </p>
+  </section>
 
-        <section id="contact" class="contact-section">
-            <h2 class="subtitle"><span>03.</span> What’s Next?</h2>
-            <h3 class="title">Get In Touch</h3>
-            <p>I'm currently looking for new opportunities and my inbox is always open. Whether you have a question or just want to say hi, I’ll do my best to get back to you!</p>
-            <p>Phone: +923343323656</p>
-            <a href="mailto:jareerfootball7@gmail.com" class="email-link">Say Hello</a>
-        </section>
-    </main>
+  <footer>
+    &copy; 2025 Jarreer Sheikh &mdash; Machine Learning Developer | Clean Code Advocate
+  </footer>
 
-    <footer>
-        <a href="https://github.com/Jarreer/JARREER" target="_blank">Designed & Built by Muhammad Jarreer</a>
-    </footer>
+  <script>
+    const projectCards = document.querySelectorAll('.project');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, {
+      threshold: 0.1
+    });
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            gsap.registerPlugin(ScrollTrigger);
+    projectCards.forEach(card => {
+      observer.observe(card);
+    });
+  </script>
+  </div>
 
-            const sections = document.querySelectorAll('section');
-            sections.forEach((section, index) => {
-                gsap.to(section, {
-                    autoAlpha: 1,
-                    y: 0,
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 80%',
-                        end: 'bottom 20%',
-                        toggleActions: 'play none none reverse',
-                    }
-                });
-            });
-
-            const timeline = gsap.timeline({ delay: 0.2 });
-            timeline
-                .from('header', { y: -100, autoAlpha: 0, duration: 0.5 })
-                .from('.social-sidebar', { x: -50, autoAlpha: 0, duration: 0.5 }, '-=0.2')
-                .from('.hero .intro', { y: 30, autoAlpha: 0, duration: 0.5 })
-                .from('.hero h1', { y: 30, autoAlpha: 0, duration: 0.5 }, '-=0.3')
-                .from('.hero h2', { y: 30, autoAlpha: 0, duration: 0.5 }, '-=0.3')
-                .from('.hero p', { y: 30, autoAlpha: 0, duration: 0.5 }, '-=0.3');
-        });
-    </script>
+  <script>
+    setTimeout(() => {
+      document.querySelector('.loader-wrapper').style.display = 'none';
+      document.getElementById('main-content').style.display = 'block';
+    }, 4000);
+  </script>
 </body>
 </html>

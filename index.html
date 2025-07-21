@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jarreer Sheikh | ML & Software Developer</title>
+  <title>Muhammad Jarreer | ML & Software Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
@@ -25,41 +25,20 @@
       animation: fadeOut 1s ease-out 3s forwards;
     }
     .logo-container {
-      width: 120px;
-      height: 120px;
-      background: radial-gradient(circle at center, #00bcd4, #008c9e);
+      width: 80px;
+      height: 80px;
+      background: #ffffff;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 30px #00bcd4, 0 0 60px #008c9e, 0 0 90px #00bcd4;
-      animation: glowPulse 3s infinite ease-in-out, fadeInLogo 1.5s ease-out forwards;
-    }
-    .logo-letter {
-      font-size: 3em;
-      color: #000;
-      font-weight: bold;
-      font-family: 'Orbitron', sans-serif;
-      text-shadow: 0 0 10px rgba(0,188,212,0.8);
+      box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff, 0 0 60px #ffffff;
+      animation: pulse 2s infinite ease-in-out;
     }
     .loader-name {
-      font-size: 2.5em;
-      background: linear-gradient(to right, #00bcd4, #00e5ff);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 0.15em;
+      font-size: 2em;
+      color: #ffffff;
+      letter-spacing: 0.1em;
       margin-top: 20px;
       opacity: 0;
-      animation: revealText 1s ease-out 2s forwards;
-    }
-    .underline {
-      width: 180px;
-      height: 3px;
-      background: linear-gradient(to right, #00e5ff, #00bcd4);
-      margin: 12px auto 0;
-      opacity: 0;
-      transform-origin: left;
-      animation: expandUnderline 1.2s ease-out 3s forwards;
+      animation: revealText 1s ease-out 1s forwards;
     }
     @keyframes fadeOut {
       to { opacity: 0; visibility: hidden; }
@@ -68,17 +47,19 @@
       0% { opacity: 0; transform: scale(0.8); }
       100% { opacity: 1; transform: scale(1); }
     }
-    @keyframes glowPulse {
-      0%, 100% { box-shadow: 0 0 30px #00bcd4, 0 0 60px #008c9e, 0 0 90px #00bcd4; }
-      50% { box-shadow: 0 0 40px #00bcd4, 0 0 80px #008c9e, 0 0 120px #00bcd4; }
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff, 0 0 60px #ffffff;
+      }
+      50% {
+        transform: scale(1);
+        box-shadow: 0 0 30px #ffffff, 0 0 50px #ffffff, 0 0 70px #ffffff;
+      }
     }
     @keyframes revealText {
       0% { opacity: 0; transform: translateY(10px); }
       100% { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes expandUnderline {
-      0% { opacity: 0; transform: scaleX(0); }
-      100% { opacity: 1; transform: scaleX(1); }
     }
   </style>
 </head>
@@ -87,15 +68,14 @@
     <div class="logo-container">
       <div class="logo-letter">J</div>
     </div>
-    <div class="loader-name">Jarreer Sheikh</div>
-    <div class="underline"></div>
+    <div class="loader-name">Muhammad Jarreer</div>
   </div>
 
   <div id="main-content" style="display:none">
     <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jarreer Sheikh | ML & Software Developer</title>
+  <title>Muhammad Jarreer | ML & Software Developer</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <style>
@@ -209,10 +189,11 @@
     .contacts a {
       color: #00bcd4;
       font-size: 1.2em;
-      transition: color 0.3s ease;
+      transition: color 0.3s ease, transform 0.3s ease;
     }
     .contacts a:hover {
       color: #26c6da;
+      animation: project-shake 0.5s infinite;
     }
     nav {
       display: flex;
@@ -252,12 +233,19 @@
       border-radius: 12px;
       overflow: hidden;
       box-shadow: 0 4px 20px rgba(0,0,0,0.6);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
       position: relative;
     }
     .project:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 6px 30px rgba(0,0,0,0.8);
+      animation: project-shake 0.5s infinite;
+      box-shadow: 0 8px 35px rgba(0,0,0,0.8);
+    }
+
+    @keyframes project-shake {
+      0% { transform: translateY(-6px) rotate(0deg); }
+      25% { transform: translateY(-6px) rotate(1deg); }
+      50% { transform: translateY(-6px) rotate(0eg); }
+      75% { transform: translateY(-6px) rotate(-1deg); }
+      100% { transform: translateY(-6px) rotate(0deg); }
     }
     .project img {
       width: 100%;
@@ -321,6 +309,52 @@
     a:hover {
       color: #26c6da;
     }
+    .skills-gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      justify-items: center;
+    }
+    .skill-item {
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .skill-item:hover {
+      transform: scale(1.1);
+    }
+    .skill-item img {
+      width: 60px;
+      height: 60px;
+      filter: drop-shadow(0 0 5px rgba(0, 188, 212, 0));
+      transition: filter 0.3s ease;
+    }
+    .skill-item:hover img {
+      animation: glow 1.5s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from {
+        filter: drop-shadow(0 0 10px rgba(0, 188, 212, 0.8));
+      }
+      to {
+        filter: drop-shadow(0 0 20px rgba(0, 229, 255, 1));
+      }
+    }
+    .skill-item p {
+      margin-top: 10px;
+      color: #b0bec5;
+    }
+    .about-container {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 3px solid #00bcd4;
+      box-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
+    }
   </style>
 </head>
 <body>
@@ -334,7 +368,7 @@
       <a href="https://wa.me/923343323656" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
       <a href="https://github.com/Jarreer" title="GitHub"><i class="fab fa-github"></i></a>
     </div>
-    <h1>Jarreer Sheikh</h1>
+    <h1>Hi, I'm Muhammad Jarreer</h1>
     <p class="subheading">Machine Learning Enthusiast | Python & C# Developer</p>
     <div class="summary-highlight">
       🚀 Passionate about solving real-world problems with intelligent systems. Adept at clean code, scalable architectures, and data-driven decisions.
@@ -344,19 +378,42 @@
   <nav>
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
   </nav>
 
   <section id="about">
     <h2>About Me</h2>
-    <p>
-      I'm <strong>Jarreer Sheikh</strong>, a dedicated Machine Learning developer with advanced Python knowledge and strong experience in C#.
+    <div class="about-container">
+      <img src="assets/images/profile.png" alt="Muhammad Jarreer" class="profile-pic">
+      <div class="about-text">
+        <p>
+      I'm <strong>Muhammad Jarreer</strong>, a dedicated Machine Learning developer with advanced Python knowledge and strong experience in C#.
       I specialize in building data-driven solutions, optimizing algorithms, and creating high-quality software with clean architecture.
     </p>
     <p>
       My goal is to bridge the gap between technology and real-world utility, delivering efficient and meaningful applications.
-    </p>
-    <a class="download-btn" href="Jarreer_Resume.pdf" download>⬇ Download Resume</a>
+        </p>
+        <a class="download-btn" href="Jarreer_Resume.pdf" download>⬇ Download Resume</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-gallery">
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"><p>Python</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"><p>Django</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask"><p>Flask</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"><p>JavaScript</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React"><p>React</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"><p>Node.js</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original-wordmark.svg" alt="Next.js"><p>Next.js</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"><p>Docker</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"><p>PostgreSQL</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5"><p>HTML5</p></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3"><p>CSS3</p></div>
+    </div>
   </section>
 
   <section id="projects">
@@ -394,7 +451,7 @@
   </section>
 
   <footer>
-    &copy; 2025 Jarreer Sheikh &mdash; Machine Learning Developer | Clean Code Advocate
+    &copy; 2025 Muhammad Jarreer &mdash; Machine Learning Developer | Clean Code Advocate
   </footer>
 
   <script>

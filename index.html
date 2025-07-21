@@ -13,20 +13,31 @@
       font-family: 'Roboto', sans-serif;
     }
 .loader-spinner {
-  animation: rotate 2s linear infinite;
+  animation: rotate 1.5s linear infinite;
 }
 .loader-spinner circle {
-  stroke-dasharray: 90, 150;
+  stroke-dasharray: 80, 200;
   stroke-dashoffset: 0;
   animation: dash 1.5s ease-in-out infinite;
 }
 @keyframes rotate {
-  100% { transform: rotate(360deg); }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 @keyframes dash {
-  0% { stroke-dasharray: 1, 200; stroke-dashoffset: 0; }
-  50% { stroke-dasharray: 90, 200; stroke-dashoffset: -35; }
-  100% { stroke-dasharray: 90, 200; stroke-dashoffset: -124; }
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -35px;
+  }
+  100% {
+    stroke-dasharray: 89, 200;
+    stroke-dashoffset: -124px;
+  }
 }
 @keyframes fadeOut {
   to { opacity: 0; visibility: hidden; }
@@ -426,6 +437,7 @@
   </section>
 
   <footer>
+    <p>Made with <span style="color: #e25555;">&hearts;</span> by Jarreer</p>
     &copy; 2025 Muhammad Jarreer &mdash; Machine Learning Developer | Clean Code Advocate
   </footer>
 
@@ -450,8 +462,15 @@
 <script>
 window.addEventListener('load', () => {
   const loader = document.getElementById('preloader');
-  loader.style.animation = 'fadeOut 0.8s forwards';
-  setTimeout(() => loader.remove(), 900);
+  const mainContent = document.getElementById('main-content');
+  
+  setTimeout(() => {
+    loader.style.opacity = '0';
+    loader.addEventListener('transitionend', () => {
+      loader.style.display = 'none';
+      mainContent.style.display = 'block';
+    });
+  }, 1500);
 });
 </script>
 </body>

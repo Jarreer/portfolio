@@ -395,7 +395,7 @@
   </section>
 
   <!-- 3D Ultimate Retro PC above About Section -->
-<div id="retro-pc-3d" style="width:100%;max-width:700px;height:400px;margin:40px auto 0 auto;"></div>
+<div id="retro-pc-3d" style="width:100%;max-width:900px;height:520px;margin:0 auto 0 auto;position:relative;top:-40px;"></div>
 
   <section id="skills">
     <h2>Skills</h2>
@@ -489,156 +489,244 @@ window.addEventListener('load', () => {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/loaders/FontLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/jsm/geometries/TextGeometry.js"></script>
 <script>
 (function() {
   const container = document.getElementById('retro-pc-3d');
   if (!container) return;
-  const width = container.offsetWidth || 700;
-  const height = container.offsetHeight || 400;
+  const width = container.offsetWidth || 900;
+  const height = container.offsetHeight || 520;
   const scene = new THREE.Scene();
   // Transparent background
   const camera = new THREE.PerspectiveCamera(45, width/height, 0.1, 1000);
-  camera.position.set(0, 2, 8);
+  camera.position.set(0, 2, 10);
   const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
   renderer.setClearColor(0x000000, 0); // transparent
   renderer.setSize(width, height);
   container.appendChild(renderer.domElement);
   // Lighting
-  const ambient = new THREE.AmbientLight(0xffffff, 1.0);
+  const ambient = new THREE.AmbientLight(0xffffff, 1.1);
   scene.add(ambient);
-  const dirLight = new THREE.DirectionalLight(0xffffff, 0.9);
+  const dirLight = new THREE.DirectionalLight(0xffffff, 1.0);
   dirLight.position.set(5, 10, 7);
   scene.add(dirLight);
   // --- Retro PC Model ---
   // Tower (right)
   const towerGroup = new THREE.Group();
-  const towerGeom = new THREE.BoxGeometry(0.6, 1.4, 1.2);
+  const towerGeom = new THREE.BoxGeometry(0.8, 2.1, 1.5);
   const towerMat = new THREE.MeshPhysicalMaterial({color:0x181a2b,metalness:0.5,roughness:0.3,clearcoat:0.4});
   const towerMesh = new THREE.Mesh(towerGeom, towerMat);
-  towerMesh.position.set(2.1, 0.2, 0);
+  towerMesh.position.set(3.1, 0.5, 0);
   towerGroup.add(towerMesh);
-  // Tower details: CD-ROM, power button, vent
-  const cdGeom = new THREE.BoxGeometry(0.32, 0.05, 0.18);
+  // Tower details: CD-ROM, power button, vents, RGB
+  const cdGeom = new THREE.BoxGeometry(0.5, 0.09, 0.22);
   const cdMat = new THREE.MeshPhysicalMaterial({color:0x222244,metalness:0.7,roughness:0.2});
   const cdMesh = new THREE.Mesh(cdGeom, cdMat);
-  cdMesh.position.set(2.1, 0.6, 0.45);
+  cdMesh.position.set(3.1, 1.1, 0.6);
   towerGroup.add(cdMesh);
-  const btnGeom = new THREE.CylinderGeometry(0.025, 0.025, 0.02, 24);
-  const btnMat = new THREE.MeshPhysicalMaterial({color:0x7d3cff,emissive:0x7d3cff,emissiveIntensity:1});
+  const btnGeom = new THREE.CylinderGeometry(0.045, 0.045, 0.04, 24);
+  const btnMat = new THREE.MeshPhysicalMaterial({color:0x7dff3c,emissive:0x00ff66,emissiveIntensity:1});
   const btnMesh = new THREE.Mesh(btnGeom, btnMat);
-  btnMesh.position.set(2.32, 0.35, 0.55);
+  btnMesh.position.set(3.45, 0.7, 0.7);
   btnMesh.rotation.x = Math.PI/2;
   towerGroup.add(btnMesh);
-  const ventGeom = new THREE.BoxGeometry(0.32, 0.02, 0.18);
+  const ventGeom = new THREE.BoxGeometry(0.5, 0.04, 0.22);
   const ventMat = new THREE.MeshPhysicalMaterial({color:0x333366,metalness:0.5,roughness:0.3});
-  for(let i=0;i<3;i++){
+  for(let i=0;i<5;i++){
     const vent = new THREE.Mesh(ventGeom, ventMat);
-    vent.position.set(2.1, 0.2-0.07*i, 0.45);
+    vent.position.set(3.1, 0.3-0.09*i, 0.6);
     towerGroup.add(vent);
   }
   // Tower RGB strip
-  const rgbStripGeom = new THREE.BoxGeometry(0.04, 1.1, 0.08);
+  const rgbStripGeom = new THREE.BoxGeometry(0.06, 1.7, 0.12);
   const rgbStripMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x00fff7,emissiveIntensity:1,metalness:0.8,roughness:0.2,transparent:true,opacity:0.85});
   const rgbStrip = new THREE.Mesh(rgbStripGeom, rgbStripMat);
-  rgbStrip.position.set(2.38, 0.2, 0.35);
+  rgbStrip.position.set(3.48, 0.5, 0.45);
   towerGroup.add(rgbStrip);
   scene.add(towerGroup);
   // Main PC case (horizontal)
-  const caseGeom = new THREE.BoxGeometry(2.2, 0.5, 1.2);
+  const caseGeom = new THREE.BoxGeometry(3.2, 0.7, 1.5);
   const caseMat = new THREE.MeshPhysicalMaterial({color:0x1a1a2d,metalness:0.5,roughness:0.3,clearcoat:0.4});
   const caseMesh = new THREE.Mesh(caseGeom, caseMat);
-  caseMesh.position.set(0, -0.25, 0);
+  caseMesh.position.set(0, -0.45, 0);
   scene.add(caseMesh);
   // Case details: CD-ROM, power button
-  const caseCdGeom = new THREE.BoxGeometry(0.5, 0.05, 0.18);
+  const caseCdGeom = new THREE.BoxGeometry(0.7, 0.09, 0.22);
   const caseCdMat = new THREE.MeshPhysicalMaterial({color:0x222244,metalness:0.7,roughness:0.2});
   const caseCdMesh = new THREE.Mesh(caseCdGeom, caseCdMat);
-  caseCdMesh.position.set(0.5, -0.05, 0.55);
+  caseCdMesh.position.set(0.8, -0.15, 0.7);
   scene.add(caseCdMesh);
-  const caseBtnGeom = new THREE.CylinderGeometry(0.03, 0.03, 0.02, 24);
+  const caseBtnGeom = new THREE.CylinderGeometry(0.06, 0.06, 0.04, 24);
   const caseBtnMat = new THREE.MeshPhysicalMaterial({color:0x00fff7,emissive:0x00fff7,emissiveIntensity:1});
   const caseBtnMesh = new THREE.Mesh(caseBtnGeom, caseBtnMat);
-  caseBtnMesh.position.set(1.05, -0.18, 0.55);
+  caseBtnMesh.position.set(1.7, -0.32, 0.7);
   caseBtnMesh.rotation.x = Math.PI/2;
   scene.add(caseBtnMesh);
   // Case RGB strip
-  const caseRgbGeom = new THREE.BoxGeometry(1.8, 0.06, 0.05);
+  const caseRgbGeom = new THREE.BoxGeometry(2.7, 0.09, 0.09);
   const caseRgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x7d3cff,emissiveIntensity:1,metalness:0.8,roughness:0.2,transparent:true,opacity:0.85});
   const caseRgbMesh = new THREE.Mesh(caseRgbGeom, caseRgbMat);
-  caseRgbMesh.position.set(0, -0.05, 0.58);
+  caseRgbMesh.position.set(0, -0.15, 0.74);
   scene.add(caseRgbMesh);
   // Monitor
   const monitorGroup = new THREE.Group();
-  const monitorBody = new THREE.BoxGeometry(1.5, 1.1, 1.1);
+  const monitorBody = new THREE.BoxGeometry(2.2, 1.5, 1.3);
   const monitorMat = new THREE.MeshPhysicalMaterial({color:0x23233a,metalness:0.3,roughness:0.5,clearcoat:0.3});
   const monitorMesh = new THREE.Mesh(monitorBody, monitorMat);
-  monitorMesh.position.set(-0.3, 0.6, 0);
+  monitorMesh.position.set(-0.5, 1.0, 0);
   monitorGroup.add(monitorMesh);
   // Screen (green code)
-  const screenGeom = new THREE.BoxGeometry(1.1, 0.7, 0.08);
-  const screenMat = new THREE.MeshPhysicalMaterial({color:0x0f1a0f,emissive:0x00ff66,emissiveIntensity:0.7,metalness:0.1,roughness:0.2,clearcoat:1.0,transparent:true,opacity:0.97});
+  const screenGeom = new THREE.BoxGeometry(1.6, 1.0, 0.12);
+  const screenMat = new THREE.MeshPhysicalMaterial({color:0x0f1a0f,emissive:0x00ff66,emissiveIntensity:0.8,metalness:0.1,roughness:0.2,clearcoat:1.0,transparent:true,opacity:0.97});
   const screenMesh = new THREE.Mesh(screenGeom, screenMat);
-  screenMesh.position.set(-0.3, 0.6, 0.56);
+  screenMesh.position.set(-0.5, 1.0, 0.68);
   monitorGroup.add(screenMesh);
   // Simulated code lines (as thin boxes)
-  for(let i=0;i<8;i++){
-    const codeGeom = new THREE.BoxGeometry(0.8-0.08*i, 0.02, 0.01);
-    const codeMat = new THREE.MeshPhysicalMaterial({color:0x00ff66,emissive:0x00ff66,emissiveIntensity:0.8,transparent:true,opacity:0.7});
+  for(let i=0;i<12;i++){
+    const codeGeom = new THREE.BoxGeometry(1.2-0.09*i, 0.03, 0.01);
+    const codeMat = new THREE.MeshPhysicalMaterial({color:0x00ff66,emissive:0x00ff66,emissiveIntensity:0.9,transparent:true,opacity:0.7});
     const codeMesh = new THREE.Mesh(codeGeom, codeMat);
-    codeMesh.position.set(-0.3, 0.8-0.08*i, 0.61);
+    codeMesh.position.set(-0.5, 1.35-0.07*i, 0.74);
     monitorGroup.add(codeMesh);
   }
   // Monitor Stand
-  const standGeom = new THREE.CylinderGeometry(0.13, 0.13, 0.18, 24);
+  const standGeom = new THREE.CylinderGeometry(0.18, 0.18, 0.22, 24);
   const standMat = new THREE.MeshPhysicalMaterial({color:0x3a2d4d,metalness:0.3,roughness:0.4});
   const standMesh = new THREE.Mesh(standGeom, standMat);
-  standMesh.position.set(-0.3, 0.15, 0.3);
+  standMesh.position.set(-0.5, 0.35, 0.45);
   monitorGroup.add(standMesh);
   scene.add(monitorGroup);
   // Keyboard
-  const kbGeom = new THREE.BoxGeometry(1.4, 0.13, 0.45);
+  const kbGeom = new THREE.BoxGeometry(2.1, 0.18, 0.7);
   const kbMat = new THREE.MeshPhysicalMaterial({color:0x181a2b,metalness:0.2,roughness:0.6});
   const kbMesh = new THREE.Mesh(kbGeom, kbMat);
-  kbMesh.position.set(-0.3, -0.6, 0.45);
+  kbMesh.position.set(-0.5, -0.95, 0.55);
   scene.add(kbMesh);
-  // Keyboard keys
+  // Keyboard keys (realistic rows)
   const keyMat = new THREE.MeshPhysicalMaterial({color:0xeeeeee,metalness:0.1,roughness:0.5});
-  for(let r=0;r<5;r++){
-    for(let c=0;c<14;c++){
-      const keyGeom = new THREE.BoxGeometry(0.08, 0.04, 0.08);
+  // Row 1 (function keys)
+  for(let c=0;c<15;c++){
+    const w = c === 0 || c === 14 ? 0.13 : 0.09;
+    const keyGeom = new THREE.BoxGeometry(w, 0.05, 0.09);
+    const key = new THREE.Mesh(keyGeom, keyMat);
+    key.position.set(-1.35+0.15*c, -0.87, 0.62);
+    scene.add(key);
+  }
+  // Row 2 (QWERTY)
+  for(let c=0;c<14;c++){
+    const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
+    const key = new THREE.Mesh(keyGeom, keyMat);
+    key.position.set(-1.28+0.15*c, -0.91, 0.52);
+    scene.add(key);
+  }
+  // Row 3 (ASDF)
+  for(let c=0;c<13;c++){
+    const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
+    const key = new THREE.Mesh(keyGeom, keyMat);
+    key.position.set(-1.21+0.15*c, -0.95, 0.42);
+    scene.add(key);
+  }
+  // Row 4 (ZXCV)
+  for(let c=0;c<12;c++){
+    const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
+    const key = new THREE.Mesh(keyGeom, keyMat);
+    key.position.set(-1.14+0.15*c, -0.99, 0.32);
+    scene.add(key);
+  }
+  // Spacebar
+  const spaceGeom = new THREE.BoxGeometry(0.7, 0.05, 0.09);
+  const spaceKey = new THREE.Mesh(spaceGeom, keyMat);
+  spaceKey.position.set(-0.5, -1.03, 0.22);
+  scene.add(spaceKey);
+  // Numpad
+  for(let r=0;r<4;r++){
+    for(let c=0;c<3;c++){
+      const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
       const key = new THREE.Mesh(keyGeom, keyMat);
-      key.position.set(-0.65+0.1*c, -0.56+0.012*r, 0.32-0.04*r);
+      key.position.set(1.1+0.15*c, -0.91-0.04*r, 0.52-0.1*r);
       scene.add(key);
     }
   }
+  // Enter key (numpad)
+  const enterGeom = new THREE.BoxGeometry(0.09, 0.11, 0.09);
+  const enterKey = new THREE.Mesh(enterGeom, keyMat);
+  enterKey.position.set(1.55, -0.95, 0.42);
+  scene.add(enterKey);
   // Keyboard RGB
-  const kbRgbGeom = new THREE.BoxGeometry(1.3, 0.03, 0.35);
-  const kbRgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x7d3cff,emissiveIntensity:0.8,metalness:0.7,roughness:0.2,transparent:true,opacity:0.7});
+  const kbRgbGeom = new THREE.BoxGeometry(1.9, 0.04, 0.55);
+  const kbRgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x7d3cff,emissiveIntensity:0.9,metalness:0.7,roughness:0.2,transparent:true,opacity:0.7});
   const kbRgbMesh = new THREE.Mesh(kbRgbGeom, kbRgbMat);
-  kbRgbMesh.position.set(-0.3, -0.54, 0.45);
+  kbRgbMesh.position.set(-0.5, -0.87, 0.55);
   scene.add(kbRgbMesh);
+  // --- Enhanced Tower Details ---
+  // Add USB ports
+  const usbGeom = new THREE.BoxGeometry(0.08, 0.02, 0.04);
+  const usbMat = new THREE.MeshPhysicalMaterial({color:0x222222,metalness:0.7,roughness:0.3});
+  for(let i=0;i<2;i++){
+    const usb = new THREE.Mesh(usbGeom, usbMat);
+    usb.position.set(3.35, 0.1-0.05*i, 0.8);
+    scene.add(usb);
+  }
+  // Add audio jacks
+  const jackGeom = new THREE.CylinderGeometry(0.01, 0.01, 0.02, 16);
+  const jackMat = new THREE.MeshPhysicalMaterial({color:0x00ff66,metalness:0.8,roughness:0.2});
+  for(let i=0;i<2;i++){
+    const jack = new THREE.Mesh(jackGeom, jackMat);
+    jack.position.set(3.38, 0.18-0.03*i, 0.8);
+    jack.rotation.x = Math.PI/2;
+    scene.add(jack);
+  }
+  // Add more venting
+  const vent2Geom = new THREE.BoxGeometry(0.5, 0.02, 0.22);
+  const vent2Mat = new THREE.MeshPhysicalMaterial({color:0x444466,metalness:0.5,roughness:0.3});
+  for(let i=0;i<4;i++){
+    const vent = new THREE.Mesh(vent2Geom, vent2Mat);
+    vent.position.set(3.1, -0.5-0.06*i, 0.6);
+    scene.add(vent);
+  }
   // Mouse
-  const mouseGeom = new THREE.SphereGeometry(0.09, 24, 16);
+  const mouseGeom = new THREE.SphereGeometry(0.13, 24, 16);
   const mouseMat = new THREE.MeshPhysicalMaterial({color:0x23233a,metalness:0.2,roughness:0.5});
   const mouseMesh = new THREE.Mesh(mouseGeom, mouseMat);
-  mouseMesh.position.set(0.7, -0.65, 0.7);
+  mouseMesh.position.set(1.2, -1.05, 0.9);
   scene.add(mouseMesh);
   // Mouse RGB
-  const mouseRgbGeom = new THREE.SphereGeometry(0.07, 24, 16, 0, Math.PI*2, 0, Math.PI/2);
+  const mouseRgbGeom = new THREE.SphereGeometry(0.11, 24, 16, 0, Math.PI*2, 0, Math.PI/2);
   const mouseRgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x7d3cff,emissiveIntensity:1,metalness:0.7,roughness:0.2,transparent:true,opacity:0.8});
   const mouseRgbMesh = new THREE.Mesh(mouseRgbGeom, mouseRgbMat);
-  mouseRgbMesh.position.set(0.7, -0.63, 0.74);
+  mouseRgbMesh.position.set(1.2, -1.02, 0.98);
   scene.add(mouseRgbMesh);
   // Cables (as lines)
   const cableMat = new THREE.LineBasicMaterial({color:0x00fff7,linewidth:2});
-  const cablePoints1 = [new THREE.Vector3(0.7, -0.65, 0.7), new THREE.Vector3(1.2, -0.7, 0.7), new THREE.Vector3(2.1, -0.3, 0.5)];
+  const cablePoints1 = [new THREE.Vector3(1.2, -1.05, 0.9), new THREE.Vector3(2.0, -1.2, 0.9), new THREE.Vector3(3.1, -0.3, 0.7)];
   const cableGeom1 = new THREE.BufferGeometry().setFromPoints(cablePoints1);
   const cable1 = new THREE.Line(cableGeom1, cableMat);
   scene.add(cable1);
-  const cablePoints2 = [new THREE.Vector3(-0.3, 0.15, 0.3), new THREE.Vector3(0.2, -0.2, 0.3), new THREE.Vector3(2.1, 0.2, 0.3)];
+  const cablePoints2 = [new THREE.Vector3(-0.5, 0.35, 0.45), new THREE.Vector3(0.2, -0.2, 0.45), new THREE.Vector3(3.1, 0.5, 0.45)];
   const cableGeom2 = new THREE.BufferGeometry().setFromPoints(cablePoints2);
   const cable2 = new THREE.Line(cableGeom2, cableMat);
   scene.add(cable2);
+  // 3D Text: Jarreer Developer (rotates with PC)
+  let textMesh = null;
+  const fontLoader = new THREE.FontLoader();
+  fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.152.2/examples/fonts/helvetiker_bold.typeface.json', function(font) {
+    const textGeom = new THREE.TextGeometry('Jarreer Developer', {
+      font: font,
+      size: 0.45,
+      height: 0.12,
+      curveSegments: 8,
+      bevelEnabled: true,
+      bevelThickness: 0.04,
+      bevelSize: 0.02,
+      bevelOffset: 0,
+      bevelSegments: 4
+    });
+    const textMat = new THREE.MeshPhysicalMaterial({color:0x00ff66,emissive:0x00ff66,emissiveIntensity:1.5,transparent:true,opacity:0.95,metalness:0.7,roughness:0.2});
+    textMesh = new THREE.Mesh(textGeom, textMat);
+    textMesh.position.set(-2.7, 2.1, 0.2);
+    scene.add(textMesh);
+  });
   // Animate RGB colors and slow rotation
   let rgbPhase = 0;
   let rotY = 0;
@@ -672,6 +760,8 @@ window.addEventListener('load', () => {
     kbRgbMat.emissive.set(rgbColor.clone().lerp(new THREE.Color(0x7d3cff), 0.5));
     mouseRgbMat.emissive.set(rgbColor.clone().lerp(new THREE.Color(0x7d3cff), 0.7));
     screenMat.emissive.set(new THREE.Color(0x00ff66).lerp(rgbColor, 0.2));
+    // Rotate text with PC
+    if (textMesh) textMesh.rotation.y = scene.rotation.y;
     // Slow auto-rotation
     if (!isDragging) {
       rotY += 0.0025;

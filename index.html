@@ -380,7 +380,7 @@
   <section id="about">
     <h2>About Me</h2>
     <div class="about-container">
-      <img src="../../../../Pictures/Screenshot 2025-07-21 180134.png" alt="Muhammad Jarreer" class="profile-pic" style="object-fit:cover;width:150px;height:150px;border-radius:10px;border:3px solid #00bcd4;box-shadow:0 0 15px rgba(0,188,212,0.7);">
+      <img src="assets/images/profile.png" alt="Muhammad Jarreer" class="profile-pic" style="object-fit:cover;width:150px;height:150px;border-radius:10px;border:3px solid #00bcd4;box-shadow:0 0 15px rgba(0,188,212,0.7);">
       <div class="about-text">
         <p>
       I'm <strong>Muhammad Jarreer</strong>, a dedicated Machine Learning developer with advanced Python knowledge and strong experience in C#.
@@ -394,7 +394,8 @@
     </div>
   </section>
 
-  <div id="gaming-pc-3d" style="width:100%;height:350px;margin:0 auto 40px auto;"></div>
+  <!-- 3D Retro Computer above About Section -->
+<div id="retro-pc-3d" style="width:100%;max-width:600px;height:350px;margin:40px auto 0 auto;"></div>
 
   <section id="skills">
     <h2>Skills</h2>
@@ -488,9 +489,11 @@ window.addEventListener('load', () => {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/MTLLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/OBJLoader.js"></script>
 <script>
 (function() {
-  const container = document.getElementById('gaming-pc-3d');
+  const container = document.getElementById('retro-pc-3d');
   if (!container) return;
   const width = container.offsetWidth || 600;
   const height = container.offsetHeight || 350;
@@ -501,84 +504,94 @@ window.addEventListener('load', () => {
   const renderer = new THREE.WebGLRenderer({antialias:true,alpha:true});
   renderer.setSize(width, height);
   container.appendChild(renderer.domElement);
-  // PC Case
-  const caseGeometry = new THREE.BoxGeometry(2, 3, 1.2);
-  const caseMaterial = new THREE.MeshPhysicalMaterial({color:0x22232a,metalness:0.7,roughness:0.3,clearcoat:0.2});
-  const pcCase = new THREE.Mesh(caseGeometry, caseMaterial);
-  scene.add(pcCase);
-  // Glass panel
-  const glassGeometry = new THREE.PlaneGeometry(1.8, 2.8);
-  const glassMaterial = new THREE.MeshPhysicalMaterial({color:0x22232a,transparent:true,opacity:0.25,roughness:0.1,metalness:0.5,clearcoat:1.0});
-  const glass = new THREE.Mesh(glassGeometry, glassMaterial);
-  glass.position.set(0.01, 0, 0.61);
-  pcCase.add(glass);
-  // RGB Strips
-  function makeRGBStrip(y, z, length, rotY) {
-    const stripGeom = new THREE.CylinderGeometry(0.03, 0.03, length, 16);
-    const stripMat = new THREE.MeshBasicMaterial({color:0xffffff});
-    const strip = new THREE.Mesh(stripGeom, stripMat);
-    strip.position.set(1.01, y, z);
-    strip.rotation.z = Math.PI/2;
-    if (rotY) strip.rotation.y = rotY;
-    return strip;
-  }
-  const rgbStrips = [
-    makeRGBStrip(1.2, 0.5, 1.5),
-    makeRGBStrip(-1.2, 0.5, 1.5),
-    makeRGBStrip(0, -0.5, 1.5, Math.PI),
-  ];
-  rgbStrips.forEach(strip => scene.add(strip));
-  // RGB Fans
-  function makeFan(x, y, z, color) {
-    const fanGeom = new THREE.TorusGeometry(0.35, 0.08, 16, 100);
-    const fanMat = new THREE.MeshBasicMaterial({color});
-    const fan = new THREE.Mesh(fanGeom, fanMat);
-    fan.position.set(x, y, z);
-    return fan;
-  }
-  const fan1 = makeFan(0.7, 0.8, 0.61, 0x00fff7);
-  const fan2 = makeFan(0.7, -0.8, 0.61, 0xff00e1);
-  scene.add(fan1, fan2);
   // Lighting
-  const ambient = new THREE.AmbientLight(0xffffff, 0.7);
+  const ambient = new THREE.AmbientLight(0xffffff, 0.8);
   scene.add(ambient);
   const dirLight = new THREE.DirectionalLight(0xffffff, 0.7);
   dirLight.position.set(5, 10, 7);
   scene.add(dirLight);
-  // Animation
-  let rgbPhase = 0;
+  // Load MTL and OBJ
+  const mtlLoader = new THREE.MTLLoader();
+  mtlLoader.setPath('assets/retro-computer/source/computer/');
+  mtlLoader.load('desktop_shortwires.mtl', function(materials) {
+    materials.preload();
+    const objLoader = new THREE.OBJLoader();
+    objLoader.setMaterials(materials);
+    objLoader.setPath('assets/retro-computer/source/computer/');
+    objLoader.load('desktop_shortwires.obj', function(object) {
+      object.scale.set(1.5, 1.5, 1.5);
+      object.position.y = -1.2;
+      scene.add(object);
+      // Animation
+      let isDragging = false, lastX = 0, rotY = 0;
+      renderer.domElement.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; });
+      renderer.domElement.addEventListener('mouseup', () => { isDragging = false; });
+      renderer.domElement.addEventListener('mouseleave', () => { isDragging = false; });
+      renderer.domElement.addEventListener('mousemove', e => {
+        if (!isDragging) return;
+        const dx = e.clientX - lastX;
+        rotY += dx * 0.01;
+        object.rotation.y = rotY;
+        lastX = e.clientX;
+      });
+      renderer.domElement.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; });
+      renderer.domElement.addEventListener('touchend', () => { isDragging = false; });
+      renderer.domElement.addEventListener('touchmove', e => {
+        if (!isDragging) return;
+        const dx = e.touches[0].clientX - lastX;
+        rotY += dx * 0.01;
+        object.rotation.y = rotY;
+        lastX = e.touches[0].clientX;
+      });
+    });
+  });
   function animate() {
-    rgbPhase += 0.02;
-    rgbStrips[0].material.color.setHSL((rgbPhase)%1, 1, 0.5);
-    rgbStrips[1].material.color.setHSL((rgbPhase+0.33)%1, 1, 0.5);
-    rgbStrips[2].material.color.setHSL((rgbPhase+0.66)%1, 1, 0.5);
-    fan1.material.color.setHSL((rgbPhase+0.2)%1, 1, 0.6);
-    fan2.material.color.setHSL((rgbPhase+0.5)%1, 1, 0.6);
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
   animate();
-  // Mouse/touch rotation
-  let isDragging = false, lastX = 0, rotY = 0;
-  renderer.domElement.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; });
-  renderer.domElement.addEventListener('mouseup', () => { isDragging = false; });
-  renderer.domElement.addEventListener('mouseleave', () => { isDragging = false; });
-  renderer.domElement.addEventListener('mousemove', e => {
-    if (!isDragging) return;
-    const dx = e.clientX - lastX;
-    rotY += dx * 0.01;
-    pcCase.rotation.y = rotY;
-    lastX = e.clientX;
+})();
+</script>
+<!-- Glowing Cursor/Scroll Effect -->
+<div id="glow-cursor" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;"><div id="glow-circle" style="position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(0,40,80,0.35) 0%,rgba(0,0,0,0.0) 80%);filter:blur(32px);mix-blend-mode:screen;transition:background 0.3s,opacity 0.3s;"></div></div>
+<script>
+(function() {
+  const glow = document.getElementById('glow-cursor');
+  const circle = document.getElementById('glow-circle');
+  let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
+  let targetX = mouseX, targetY = mouseY;
+  // Mouse move
+  document.addEventListener('mousemove', e => {
+    targetX = e.clientX - 80;
+    targetY = e.clientY - 80;
   });
-  // Touch
-  renderer.domElement.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; });
-  renderer.domElement.addEventListener('touchend', () => { isDragging = false; });
-  renderer.domElement.addEventListener('touchmove', e => {
-    if (!isDragging) return;
-    const dx = e.touches[0].clientX - lastX;
-    rotY += dx * 0.01;
-    pcCase.rotation.y = rotY;
-    lastX = e.touches[0].clientX;
+  // Touch move
+  document.addEventListener('touchmove', e => {
+    if (e.touches.length > 0) {
+      targetX = e.touches[0].clientX - 80;
+      targetY = e.touches[0].clientY - 80;
+    }
+  });
+  // Animate position
+  function animate() {
+    mouseX += (targetX - mouseX) * 0.18;
+    mouseY += (targetY - mouseY) * 0.18;
+    circle.style.transform = `translate3d(${mouseX}px,${mouseY}px,0)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
+  // Scroll glow up effect
+  let lastScroll = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const scrollDelta = Math.abs(window.scrollY - lastScroll);
+    lastScroll = window.scrollY;
+    // Animate glow intensity on scroll
+    circle.style.opacity = '0.7';
+    circle.style.background = 'radial-gradient(circle,rgba(0,80,180,0.45) 0%,rgba(0,0,0,0.0) 80%)';
+    setTimeout(() => {
+      circle.style.opacity = '0.35';
+      circle.style.background = 'radial-gradient(circle,rgba(0,40,80,0.35) 0%,rgba(0,0,0,0.0) 80%)';
+    }, 350);
   });
 })();
 </script>

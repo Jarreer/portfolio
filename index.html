@@ -394,7 +394,7 @@
     </div>
   </section>
 
-  <!-- 3D Retro Computer above About Section -->
+  <!-- 3D Custom Retro PC above About Section -->
 <div id="retro-pc-3d" style="width:100%;max-width:600px;height:350px;margin:40px auto 0 auto;"></div>
 
   <section id="skills">
@@ -489,8 +489,6 @@ window.addEventListener('load', () => {
 });
 </script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/MTLLoader.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/examples/js/loaders/OBJLoader.js"></script>
 <script>
 (function() {
   const container = document.getElementById('retro-pc-3d');
@@ -510,56 +508,121 @@ window.addEventListener('load', () => {
   const dirLight = new THREE.DirectionalLight(0xffffff, 0.7);
   dirLight.position.set(5, 10, 7);
   scene.add(dirLight);
-  // Load MTL and OBJ
-  const mtlLoader = new THREE.MTLLoader();
-  mtlLoader.setPath('assets/retro-computer/source/computer/');
-  mtlLoader.load('desktop_shortwires.mtl', function(materials) {
-    materials.preload();
-    const objLoader = new THREE.OBJLoader();
-    objLoader.setMaterials(materials);
-    objLoader.setPath('assets/retro-computer/source/computer/');
-    objLoader.load('desktop_shortwires.obj', function(object) {
-      object.scale.set(1.5, 1.5, 1.5);
-      object.position.y = -1.2;
-      scene.add(object);
-      // Animation
-      let isDragging = false, lastX = 0, rotY = 0;
-      renderer.domElement.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; });
-      renderer.domElement.addEventListener('mouseup', () => { isDragging = false; });
-      renderer.domElement.addEventListener('mouseleave', () => { isDragging = false; });
-      renderer.domElement.addEventListener('mousemove', e => {
-        if (!isDragging) return;
-        const dx = e.clientX - lastX;
-        rotY += dx * 0.01;
-        object.rotation.y = rotY;
-        lastX = e.clientX;
-      });
-      renderer.domElement.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; });
-      renderer.domElement.addEventListener('touchend', () => { isDragging = false; });
-      renderer.domElement.addEventListener('touchmove', e => {
-        if (!isDragging) return;
-        const dx = e.touches[0].clientX - lastX;
-        rotY += dx * 0.01;
-        object.rotation.y = rotY;
-        lastX = e.touches[0].clientX;
-      });
-    });
+  // --- Retro PC Model ---
+  // Monitor
+  const monitorGroup = new THREE.Group();
+  const monitorBody = new THREE.BoxGeometry(1.5, 1.1, 1.1);
+  const monitorMat = new THREE.MeshPhysicalMaterial({color:0x2d223a,metalness:0.2,roughness:0.5,clearcoat:0.3});
+  const monitorMesh = new THREE.Mesh(monitorBody, monitorMat);
+  monitorMesh.position.set(0, 0.6, 0);
+  monitorGroup.add(monitorMesh);
+  // Screen (glowing)
+  const screenGeom = new THREE.BoxGeometry(1.1, 0.7, 0.08);
+  const screenMat = new THREE.MeshPhysicalMaterial({color:0x7d3cff,emissive:0x7d3cff,emissiveIntensity:0.7,metalness:0.1,roughness:0.2,clearcoat:1.0,transparent:true,opacity:0.95});
+  const screenMesh = new THREE.Mesh(screenGeom, screenMat);
+  screenMesh.position.set(0, 0.6, 0.56);
+  monitorGroup.add(screenMesh);
+  // Monitor Stand
+  const standGeom = new THREE.CylinderGeometry(0.13, 0.13, 0.18, 24);
+  const standMat = new THREE.MeshPhysicalMaterial({color:0x3a2d4d,metalness:0.3,roughness:0.4});
+  const standMesh = new THREE.Mesh(standGeom, standMat);
+  standMesh.position.set(0, 0.15, 0.3);
+  monitorGroup.add(standMesh);
+  scene.add(monitorGroup);
+  // PC Case
+  const caseGeom = new THREE.BoxGeometry(1.6, 0.6, 1.1);
+  const caseMat = new THREE.MeshPhysicalMaterial({color:0x2d223a,metalness:0.3,roughness:0.5,clearcoat:0.2});
+  const caseMesh = new THREE.Mesh(caseGeom, caseMat);
+  caseMesh.position.set(0, -0.25, 0);
+  scene.add(caseMesh);
+  // RGB Strip (front)
+  const rgbGeom = new THREE.BoxGeometry(1.2, 0.08, 0.05);
+  const rgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x00fff7,emissiveIntensity:1,metalness:0.8,roughness:0.2,transparent:true,opacity:0.85});
+  const rgbMesh = new THREE.Mesh(rgbGeom, rgbMat);
+  rgbMesh.position.set(0, -0.05, 0.58);
+  scene.add(rgbMesh);
+  // Keyboard
+  const kbGeom = new THREE.BoxGeometry(1.2, 0.12, 0.4);
+  const kbMat = new THREE.MeshPhysicalMaterial({color:0x231a2e,metalness:0.2,roughness:0.6});
+  const kbMesh = new THREE.Mesh(kbGeom, kbMat);
+  kbMesh.position.set(0, -0.55, 0.45);
+  scene.add(kbMesh);
+  // Keyboard RGB
+  const kbRgbGeom = new THREE.BoxGeometry(1.1, 0.03, 0.32);
+  const kbRgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x7d3cff,emissiveIntensity:0.7,metalness:0.7,roughness:0.2,transparent:true,opacity:0.7});
+  const kbRgbMesh = new THREE.Mesh(kbRgbGeom, kbRgbMat);
+  kbRgbMesh.position.set(0, -0.5, 0.45);
+  scene.add(kbRgbMesh);
+  // Mouse
+  const mouseGeom = new THREE.SphereGeometry(0.09, 24, 16);
+  const mouseMat = new THREE.MeshPhysicalMaterial({color:0x231a2e,metalness:0.2,roughness:0.5});
+  const mouseMesh = new THREE.Mesh(mouseGeom, mouseMat);
+  mouseMesh.position.set(0.45, -0.6, 0.7);
+  scene.add(mouseMesh);
+  // Mouse RGB
+  const mouseRgbGeom = new THREE.SphereGeometry(0.07, 24, 16, 0, Math.PI*2, 0, Math.PI/2);
+  const mouseRgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x7d3cff,emissiveIntensity:0.8,metalness:0.7,roughness:0.2,transparent:true,opacity:0.7});
+  const mouseRgbMesh = new THREE.Mesh(mouseRgbGeom, mouseRgbMat);
+  mouseRgbMesh.position.set(0.45, -0.58, 0.74);
+  scene.add(mouseRgbMesh);
+  // Animate RGB colors
+  let rgbPhase = 0;
+  // Mouse/touch rotation
+  let isDragging = false, lastX = 0, rotY = 0;
+  renderer.domElement.addEventListener('mousedown', e => { isDragging = true; lastX = e.clientX; });
+  renderer.domElement.addEventListener('mouseup', () => { isDragging = false; });
+  renderer.domElement.addEventListener('mouseleave', () => { isDragging = false; });
+  renderer.domElement.addEventListener('mousemove', e => {
+    if (!isDragging) return;
+    const dx = e.clientX - lastX;
+    rotY += dx * 0.01;
+    monitorGroup.rotation.y = rotY;
+    caseMesh.rotation.y = rotY;
+    rgbMesh.rotation.y = rotY;
+    kbMesh.rotation.y = rotY;
+    kbRgbMesh.rotation.y = rotY;
+    mouseMesh.rotation.y = rotY;
+    mouseRgbMesh.rotation.y = rotY;
+    lastX = e.clientX;
+  });
+  renderer.domElement.addEventListener('touchstart', e => { isDragging = true; lastX = e.touches[0].clientX; });
+  renderer.domElement.addEventListener('touchend', () => { isDragging = false; });
+  renderer.domElement.addEventListener('touchmove', e => {
+    if (!isDragging) return;
+    const dx = e.touches[0].clientX - lastX;
+    rotY += dx * 0.01;
+    monitorGroup.rotation.y = rotY;
+    caseMesh.rotation.y = rotY;
+    rgbMesh.rotation.y = rotY;
+    kbMesh.rotation.y = rotY;
+    kbRgbMesh.rotation.y = rotY;
+    mouseMesh.rotation.y = rotY;
+    mouseRgbMesh.rotation.y = rotY;
+    lastX = e.touches[0].clientX;
   });
   function animate() {
+    rgbPhase += 0.03;
+    // Animate RGB strips and screen
+    const rgbColor = new THREE.Color().setHSL((rgbPhase/2)%1, 1, 0.6);
+    rgbMat.emissive.set(rgbColor);
+    kbRgbMat.emissive.set(rgbColor.clone().lerp(new THREE.Color(0x7d3cff), 0.5));
+    mouseRgbMat.emissive.set(rgbColor.clone().lerp(new THREE.Color(0x7d3cff), 0.7));
+    screenMat.emissive.set(new THREE.Color(0x7d3cff).lerp(rgbColor, 0.3));
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
   }
   animate();
 })();
 </script>
-<!-- Glowing Cursor/Scroll Effect -->
-<div id="glow-cursor" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;"><div id="glow-circle" style="position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(0,40,80,0.35) 0%,rgba(0,0,0,0.0) 80%);filter:blur(32px);mix-blend-mode:screen;transition:background 0.3s,opacity 0.3s;"></div></div>
+<!-- Glowing Cursor/Scroll Effect (Multi Dark Colors) -->
+<div id="glow-cursor" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;"><div id="glow-circle" style="position:absolute;width:160px;height:160px;border-radius:50%;background:radial-gradient(circle,rgba(30,30,60,0.38) 0%,rgba(0,0,0,0.0) 80%);filter:blur(32px);mix-blend-mode:screen;transition:background 0.3s,opacity 0.3s;"></div></div>
 <script>
 (function() {
   const glow = document.getElementById('glow-cursor');
   const circle = document.getElementById('glow-circle');
   let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
   let targetX = mouseX, targetY = mouseY;
+  let colorPhase = 0;
   // Mouse move
   document.addEventListener('mousemove', e => {
     targetX = e.clientX - 80;
@@ -572,11 +635,19 @@ window.addEventListener('load', () => {
       targetY = e.touches[0].clientY - 80;
     }
   });
-  // Animate position
+  // Animate position and color
   function animate() {
     mouseX += (targetX - mouseX) * 0.18;
     mouseY += (targetY - mouseY) * 0.18;
     circle.style.transform = `translate3d(${mouseX}px,${mouseY}px,0)`;
+    // Multi dark color cycling
+    colorPhase += 0.008;
+    // Generate dark HSL colors cycling through hue
+    const hue = (220 + 80 * Math.sin(colorPhase * 2)) % 360;
+    const hue2 = (hue + 40) % 360;
+    const color1 = `hsla(${hue}, 40%, 18%, 0.45)`;
+    const color2 = `hsla(${hue2}, 40%, 10%, 0.0)`;
+    circle.style.background = `radial-gradient(circle,${color1} 0%,${color2} 80%)`;
     requestAnimationFrame(animate);
   }
   animate();
@@ -586,11 +657,9 @@ window.addEventListener('load', () => {
     const scrollDelta = Math.abs(window.scrollY - lastScroll);
     lastScroll = window.scrollY;
     // Animate glow intensity on scroll
-    circle.style.opacity = '0.7';
-    circle.style.background = 'radial-gradient(circle,rgba(0,80,180,0.45) 0%,rgba(0,0,0,0.0) 80%)';
+    circle.style.opacity = '0.8';
     setTimeout(() => {
-      circle.style.opacity = '0.35';
-      circle.style.background = 'radial-gradient(circle,rgba(0,40,80,0.35) 0%,rgba(0,0,0,0.0) 80%)';
+      circle.style.opacity = '0.38';
     }, 350);
   });
 })();

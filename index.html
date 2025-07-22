@@ -512,7 +512,7 @@ window.addEventListener('load', () => {
   scene.add(dirLight);
   // Load GLB model
   const loader = new THREE.GLTFLoader();
-  loader.load('C:/Users/DELL/Downloads/3dcomputer/retro_computer.glb', function(gltf) {
+  loader.load('assets/retro-computer/retro_computer.glb', function(gltf) {
     const model = gltf.scene;
     model.position.set(0, -0.5, 0);
     model.scale.set(3.5, 3.5, 3.5);

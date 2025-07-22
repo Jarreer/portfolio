@@ -597,76 +597,79 @@ window.addEventListener('load', () => {
   standMesh.position.set(-0.5, 0.35, 0.45);
   monitorGroup.add(standMesh);
   scene.add(monitorGroup);
-  // Keyboard
+  // --- Enhanced Keyboard (grouped for performance) ---
   const kbGeom = new THREE.BoxGeometry(2.1, 0.18, 0.7);
   const kbMat = new THREE.MeshPhysicalMaterial({color:0x181a2b,metalness:0.2,roughness:0.6});
   const kbMesh = new THREE.Mesh(kbGeom, kbMat);
   kbMesh.position.set(-0.5, -0.95, 0.55);
   scene.add(kbMesh);
-  // Keyboard keys (realistic rows)
   const keyMat = new THREE.MeshPhysicalMaterial({color:0xeeeeee,metalness:0.1,roughness:0.5});
+  const keyGroup = new THREE.Group();
   // Row 1 (function keys)
   for(let c=0;c<15;c++){
     const w = c === 0 || c === 14 ? 0.13 : 0.09;
     const keyGeom = new THREE.BoxGeometry(w, 0.05, 0.09);
     const key = new THREE.Mesh(keyGeom, keyMat);
     key.position.set(-1.35+0.15*c, -0.87, 0.62);
-    scene.add(key);
+    keyGroup.add(key);
   }
   // Row 2 (QWERTY)
   for(let c=0;c<14;c++){
     const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
     const key = new THREE.Mesh(keyGeom, keyMat);
     key.position.set(-1.28+0.15*c, -0.91, 0.52);
-    scene.add(key);
+    keyGroup.add(key);
   }
   // Row 3 (ASDF)
   for(let c=0;c<13;c++){
     const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
     const key = new THREE.Mesh(keyGeom, keyMat);
     key.position.set(-1.21+0.15*c, -0.95, 0.42);
-    scene.add(key);
+    keyGroup.add(key);
   }
   // Row 4 (ZXCV)
   for(let c=0;c<12;c++){
     const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
     const key = new THREE.Mesh(keyGeom, keyMat);
     key.position.set(-1.14+0.15*c, -0.99, 0.32);
-    scene.add(key);
+    keyGroup.add(key);
   }
   // Spacebar
   const spaceGeom = new THREE.BoxGeometry(0.7, 0.05, 0.09);
   const spaceKey = new THREE.Mesh(spaceGeom, keyMat);
   spaceKey.position.set(-0.5, -1.03, 0.22);
-  scene.add(spaceKey);
+  keyGroup.add(spaceKey);
   // Numpad
   for(let r=0;r<4;r++){
     for(let c=0;c<3;c++){
       const keyGeom = new THREE.BoxGeometry(0.09, 0.05, 0.09);
       const key = new THREE.Mesh(keyGeom, keyMat);
       key.position.set(1.1+0.15*c, -0.91-0.04*r, 0.52-0.1*r);
-      scene.add(key);
+      keyGroup.add(key);
     }
   }
   // Enter key (numpad)
   const enterGeom = new THREE.BoxGeometry(0.09, 0.11, 0.09);
   const enterKey = new THREE.Mesh(enterGeom, keyMat);
   enterKey.position.set(1.55, -0.95, 0.42);
-  scene.add(enterKey);
+  keyGroup.add(enterKey);
+  keyGroup.position.set(0,0,0);
+  scene.add(keyGroup);
   // Keyboard RGB
   const kbRgbGeom = new THREE.BoxGeometry(1.9, 0.04, 0.55);
   const kbRgbMat = new THREE.MeshPhysicalMaterial({color:0xffffff,emissive:0x7d3cff,emissiveIntensity:0.9,metalness:0.7,roughness:0.2,transparent:true,opacity:0.7});
   const kbRgbMesh = new THREE.Mesh(kbRgbGeom, kbRgbMat);
   kbRgbMesh.position.set(-0.5, -0.87, 0.55);
   scene.add(kbRgbMesh);
-  // --- Enhanced Tower Details ---
+  // --- Enhanced Tower Details (grouped) ---
+  const towerDetailsGroup = new THREE.Group();
   // Add USB ports
   const usbGeom = new THREE.BoxGeometry(0.08, 0.02, 0.04);
   const usbMat = new THREE.MeshPhysicalMaterial({color:0x222222,metalness:0.7,roughness:0.3});
   for(let i=0;i<2;i++){
     const usb = new THREE.Mesh(usbGeom, usbMat);
     usb.position.set(3.35, 0.1-0.05*i, 0.8);
-    scene.add(usb);
+    towerDetailsGroup.add(usb);
   }
   // Add audio jacks
   const jackGeom = new THREE.CylinderGeometry(0.01, 0.01, 0.02, 16);
@@ -675,7 +678,7 @@ window.addEventListener('load', () => {
     const jack = new THREE.Mesh(jackGeom, jackMat);
     jack.position.set(3.38, 0.18-0.03*i, 0.8);
     jack.rotation.x = Math.PI/2;
-    scene.add(jack);
+    towerDetailsGroup.add(jack);
   }
   // Add more venting
   const vent2Geom = new THREE.BoxGeometry(0.5, 0.02, 0.22);
@@ -683,8 +686,9 @@ window.addEventListener('load', () => {
   for(let i=0;i<4;i++){
     const vent = new THREE.Mesh(vent2Geom, vent2Mat);
     vent.position.set(3.1, -0.5-0.06*i, 0.6);
-    scene.add(vent);
+    towerDetailsGroup.add(vent);
   }
+  towerGroup.add(towerDetailsGroup);
   // Mouse
   const mouseGeom = new THREE.SphereGeometry(0.13, 24, 16);
   const mouseMat = new THREE.MeshPhysicalMaterial({color:0x23233a,metalness:0.2,roughness:0.5});
@@ -726,7 +730,7 @@ window.addEventListener('load', () => {
     textMesh = new THREE.Mesh(textGeom, textMat);
     textMesh.position.set(-2.7, 2.1, 0.2);
     scene.add(textMesh);
-  });
+  }, undefined, function(err) { console.error('Font load error', err); });
   // Animate RGB colors and slow rotation
   let rgbPhase = 0;
   let rotY = 0;

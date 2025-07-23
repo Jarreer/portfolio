@@ -673,26 +673,37 @@ window.addEventListener('load', () => {
   });
 })();
 </script>
-<!-- RGB Glowing effect for 'Hi, I'm Muhammad Jarreer' -->
+<!-- RGB Glowing effect for headings and logo -->
 <script>
 (function() {
-  const h1 = document.querySelector('header h1');
-  if (!h1) return;
-  let colorPhase = 0;
-  function animate() {
-    colorPhase += 0.012;
-    const hue1 = (220 + 120 * Math.sin(colorPhase * 1.2)) % 360;
-    const hue2 = (hue1 + 60) % 360;
-    const hue3 = (hue1 + 120) % 360;
-    h1.style.background = `linear-gradient(90deg,hsla(${hue1},100%,60%,1) 0%,hsla(${hue2},100%,55%,1) 50%,hsla(${hue3},100%,50%,1) 100%)`;
-    h1.style.webkitBackgroundClip = 'text';
-    h1.style.webkitTextFillColor = 'transparent';
-    h1.style.backgroundClip = 'text';
-    h1.style.textFillColor = 'transparent';
-    h1.style.textShadow = `0 0 16px hsla(${hue1},100%,60%,0.7),0 0 32px hsla(${hue2},100%,55%,0.5)`;
-    requestAnimationFrame(animate);
+  // Helper to animate RGB gradient on an element
+  function animateRGBText(el) {
+    let colorPhase = Math.random() * 100;
+    function animate() {
+      colorPhase += 0.012;
+      const hue1 = (220 + 120 * Math.sin(colorPhase * 1.2)) % 360;
+      const hue2 = (hue1 + 60) % 360;
+      const hue3 = (hue1 + 120) % 360;
+      el.style.background = `linear-gradient(90deg,hsla(${hue1},100%,60%,1) 0%,hsla(${hue2},100%,55%,1) 50%,hsla(${hue3},100%,50%,1) 100%)`;
+      el.style.webkitBackgroundClip = 'text';
+      el.style.webkitTextFillColor = 'transparent';
+      el.style.backgroundClip = 'text';
+      el.style.textFillColor = 'transparent';
+      el.style.textShadow = `0 0 16px hsla(${hue1},100%,60%,0.7),0 0 32px hsla(${hue2},100%,55%,0.5)`;
+      requestAnimationFrame(animate);
+    }
+    animate();
   }
-  animate();
+  // Animate h1
+  const h1 = document.querySelector('header h1');
+  if (h1) animateRGBText(h1);
+  // Animate all section headings
+  document.querySelectorAll('section h2').forEach(animateRGBText);
+  // Animate About Me text (the .about-text p elements)
+  document.querySelectorAll('.about-text p').forEach(animateRGBText);
+  // Animate .logo J
+  const logoJ = document.querySelector('.logo');
+  if (logoJ) animateRGBText(logoJ);
 })();
 </script>
 </body>

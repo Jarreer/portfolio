@@ -748,5 +748,63 @@ document.querySelectorAll('.about-animated-bg').forEach(el => {
   });
 });
 </script>
+<style>
+/* Ensure About Me text is plain white */
+.about-animated-bg p, .about-text p {
+  color: #fff !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  -webkit-text-fill-color: #fff !important;
+  background-clip: initial !important;
+  text-fill-color: #fff !important;
+  text-shadow: none !important;
+}
+
+/* Dynamic, appealing project boxes */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 28px;
+}
+.project {
+  background: linear-gradient(135deg, #23243a 0%, #1a1a2e 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px 0 rgba(0,0,0,0.18), 0 1.5px 8px 0 rgba(0,255,200,0.08);
+  border: 3px solid transparent;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.22s cubic-bezier(.4,2,.3,1), box-shadow 0.22s, border 0.22s;
+}
+.project::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  z-index: 0;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #00ffea, #ff00c8, #ffe600, #00ffea);
+  background-size: 300% 300%;
+  animation: projectBorderAnim 5s ease-in-out infinite;
+  opacity: 0.7;
+  filter: blur(6px);
+  transition: opacity 0.22s;
+}
+@keyframes projectBorderAnim {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.project:hover, .project:focus {
+  transform: scale(1.045);
+  box-shadow: 0 8px 48px 0 rgba(0,255,200,0.18), 0 2px 24px 0 rgba(0,0,0,0.22);
+  border: 3px solid #00ffea;
+}
+.project:hover::before, .project:focus::before {
+  opacity: 1;
+}
+.project > * {
+  position: relative;
+  z-index: 1;
+}
+</style>
 </body>
 </html>

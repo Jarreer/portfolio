@@ -521,109 +521,109 @@ window.addEventListener('load', () => {
         // Monitor
         const monitorGroup = new THREE.Group();
         const monitorBody = new THREE.Mesh(
-          new THREE.BoxGeometry(2.8, 1.8, 1.7), // enlarged
-          createRGBMaterial()
+          new THREE.BoxGeometry(2, 1.3, 1.2),
+          new THREE.MeshStandardMaterial({ color: 0xcfcfcf, metalness: 0.2, roughness: 0.6 })
         );
-        monitorBody.position.set(0, 0.9, 0);
+        monitorBody.position.set(0, 0.65, 0);
         monitorGroup.add(monitorBody);
         // Screen
         const screen = new THREE.Mesh(
-          new THREE.BoxGeometry(2.1, 1.4, 0.12), // enlarged
-          new THREE.MeshStandardMaterial({ color: 0x111a11, emissive: 0x00ff00, emissiveIntensity: 0.18, roughness: 0.4 })
+          new THREE.BoxGeometry(1.5, 1, 0.08),
+          new THREE.MeshStandardMaterial({ color: 0x222a2a, emissive: 0x1aee1a, emissiveIntensity: 0.12, roughness: 0.4 })
         );
-        screen.position.set(0, 0.9, 0.88);
+        screen.position.set(0, 0.65, 0.62);
         monitorGroup.add(screen);
         // Glowing green code lines (using thin boxes)
         for (let i = 0; i < 8; i++) {
           const codeLine = new THREE.Mesh(
-            new THREE.BoxGeometry(1.7 - 0.15*i, 0.03, 0.01),
+            new THREE.BoxGeometry(1.2 - 0.12*i, 0.025, 0.01),
             new THREE.MeshStandardMaterial({ color: 0x00ff00, emissive: 0x00ff00, emissiveIntensity: 0.9 })
           );
-          codeLine.position.set(0, 1.18 - i*0.16, 0.95);
+          codeLine.position.set(0, 0.95 - i*0.11, 0.67);
           monitorGroup.add(codeLine);
         }
         // Monitor Stand
         const stand = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.18, 0.18, 0.35, 24),
-          createRGBMaterial()
+          new THREE.CylinderGeometry(0.13, 0.13, 0.25, 24),
+          new THREE.MeshStandardMaterial({ color: 0x888888, metalness: 0.5, roughness: 0.3 })
         );
-        stand.position.set(0, 0.22, 0);
+        stand.position.set(0, 0.15, 0);
         monitorGroup.add(stand);
         // Monitor Base
         const base = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.5, 0.7, 0.13, 32),
-          createRGBMaterial()
+          new THREE.CylinderGeometry(0.35, 0.5, 0.08, 32),
+          new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 0.3, roughness: 0.5 })
         );
         base.position.set(0, 0, 0);
         monitorGroup.add(base);
         scene.add(monitorGroup);
         // Tower
         const tower = new THREE.Mesh(
-          new THREE.BoxGeometry(1.1, 2.2, 1.6),
-          createRGBMaterial()
+          new THREE.BoxGeometry(0.7, 1.5, 1.1),
+          new THREE.MeshStandardMaterial({ color: 0xcccccc, metalness: 0.18, roughness: 0.7 })
         );
-        tower.position.set(-2.2, 1.1, 0);
+        tower.position.set(-1.5, 0.75, 0);
         scene.add(tower);
         // Tower details (drive, power button)
         const drive = new THREE.Mesh(
-          new THREE.BoxGeometry(0.8, 0.13, 0.28),
+          new THREE.BoxGeometry(0.5, 0.08, 0.18),
           new THREE.MeshStandardMaterial({ color: 0x888888, metalness: 0.3, roughness: 0.4 })
         );
-        drive.position.set(-2.2, 1.85, 0.85);
+        drive.position.set(-1.5, 1.3, 0.6);
         scene.add(drive);
         const powerBtn = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.07, 0.07, 0.03, 24),
+          new THREE.CylinderGeometry(0.04, 0.04, 0.02, 24),
           new THREE.MeshStandardMaterial({ color: 0x00ff00, emissive: 0x00ff00, emissiveIntensity: 0.7 })
         );
-        powerBtn.position.set(-1.8, 0.7, 0.88);
+        powerBtn.position.set(-1.2, 0.5, 0.62);
         powerBtn.rotation.x = Math.PI / 2;
         scene.add(powerBtn);
         // Keyboard
         const keyboard = new THREE.Mesh(
-          new THREE.BoxGeometry(2.3, 0.18, 0.8),
-          createRGBMaterial()
+          new THREE.BoxGeometry(1.5, 0.12, 0.5),
+          new THREE.MeshStandardMaterial({ color: 0xeeeeee, metalness: 0.1, roughness: 0.7 })
         );
-        keyboard.position.set(0, 0.11, 1.7);
+        keyboard.position.set(0, 0.07, 1.1);
         scene.add(keyboard);
         // Keyboard keys (rows)
         for (let row = 0; row < 4; row++) {
-          for (let col = 0; col < 18; col++) {
+          for (let col = 0; col < 12; col++) {
             const key = new THREE.Mesh(
-              new THREE.BoxGeometry(0.13, 0.06, 0.13),
+              new THREE.BoxGeometry(0.09, 0.04, 0.09),
               new THREE.MeshStandardMaterial({ color: 0xdedede, metalness: 0.08, roughness: 0.6 })
             );
             key.position.set(
-              -1.05 + col * 0.13,
-              0.18,
-              1.55 + row * 0.13
+              -0.75 + col * 0.14,
+              0.12,
+              0.95 + row * 0.1
             );
             scene.add(key);
           }
         }
         // Mouse
         const mouse = new THREE.Mesh(
-          new THREE.CylinderGeometry(0.13, 0.19, 0.32, 32),
-          createRGBMaterial()
+          new THREE.CylinderGeometry(0.09, 0.13, 0.22, 32),
+          new THREE.MeshStandardMaterial({ color: 0xcccccc, metalness: 0.2, roughness: 0.6 })
         );
-        mouse.position.set(1.1, 0.19, 2.0);
+        mouse.position.set(0.7, 0.13, 1.2);
         mouse.rotation.x = Math.PI / 2;
         scene.add(mouse);
         // Mouse button
         const mouseBtn = new THREE.Mesh(
-          new THREE.BoxGeometry(0.11, 0.02, 0.26),
+          new THREE.BoxGeometry(0.07, 0.01, 0.18),
           new THREE.MeshStandardMaterial({ color: 0xaaaaaa, metalness: 0.2, roughness: 0.5 })
         );
-        mouseBtn.position.set(1.1, 0.33, 2.0);
+        mouseBtn.position.set(0.7, 0.23, 1.2);
         scene.add(mouseBtn);
         // Wires (curved tubes)
         const wireMat = new THREE.MeshStandardMaterial({ color: 0x222222, metalness: 0.7, roughness: 0.3 });
         const wireCurve = new THREE.CatmullRomCurve3([
-          new THREE.Vector3(1.1, 0.19, 2.0),
-          new THREE.Vector3(1.7, 0.15, 1.7),
-          new THREE.Vector3(1.8, 0.09, 0.3),
-          new THREE.Vector3(0.3, 0.09, -0.8)
+          new THREE.Vector3(0.7, 0.13, 1.2),
+          new THREE.Vector3(1.1, 0.1, 1.0),
+          new THREE.Vector3(1.2, 0.05, 0.2),
+          new THREE.Vector3(0.2, 0.05, -0.5)
         ]);
-        const wireGeo = new THREE.TubeGeometry(wireCurve, 20, 0.03, 8, false);
+        const wireGeo = new THREE.TubeGeometry(wireCurve, 20, 0.02, 8, false);
         const wire = new THREE.Mesh(wireGeo, wireMat);
         scene.add(wire);
         // Subtle shadow
@@ -637,7 +637,7 @@ window.addEventListener('load', () => {
         mouse.castShadow = true;
         mouse.receiveShadow = true;
         // Camera position
-        // camera.position.set(0, 2.5, 11); // move camera back for larger model
+        camera.position.set(0, 2, 7);
         // Interactivity (rotation)
         let rotY = 0;
         let isDragging = false, lastX = 0;
@@ -668,32 +668,18 @@ window.addEventListener('load', () => {
           wire.rotation.y = rotY;
           lastX = e.touches[0].clientX;
         });
-        // Slow auto-rotation (slower)
+        // Slow auto-rotation
         function animate() {
-          try {
-            // Animate RGB glow
-            const t = Date.now() * 0.001;
-            const rgb = new THREE.Color(`hsl(${(t*60)%360},100%,50%)`);
-            monitorBody.material.emissive.copy(rgb);
-            tower.material.emissive.copy(rgb);
-            keyboard.material.emissive.copy(rgb);
-            stand.material.emissive.copy(rgb);
-            base.material.emissive.copy(rgb);
-            mouse.material.emissive.copy(rgb);
-            // Slower rotation
-            if (!isDragging) {
-              rotY += 0.0007;
-              monitorGroup.rotation.y = rotY;
-              tower.rotation.y = rotY;
-              keyboard.rotation.y = rotY;
-              mouse.rotation.y = rotY;
-              wire.rotation.y = rotY;
-            }
-            renderer.render(scene, camera);
-            requestAnimationFrame(animate);
-          } catch (e) {
-            console.error('3D Animation error:', e);
+          if (!isDragging) {
+            rotY += 0.0025;
+            monitorGroup.rotation.y = rotY;
+            tower.rotation.y = rotY;
+            keyboard.rotation.y = rotY;
+            mouse.rotation.y = rotY;
+            wire.rotation.y = rotY;
           }
+          renderer.render(scene, camera);
+          requestAnimationFrame(animate);
         }
         animate();
         // --- End custom model code ---

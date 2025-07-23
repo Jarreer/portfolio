@@ -396,8 +396,8 @@
 
   <!-- 3D Model Loader for retro_computer.glb above About Section -->
 <div id="retro-pc-3d" style="width:100%;max-width:600px;height:auto;margin:0 auto 0 auto;position:relative;top:-40px;display:flex;flex-direction:column;align-items:center;">
-  <div style="width:100%;text-align:center;margin-bottom:10px;">
-    <span style="font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:bold;color:#00ff66;text-shadow:0 0 16px #00ff66,0 0 32px #00ff66;letter-spacing:2px;display:inline-block;">Jarreer Developer</span>
+  <div style="width:100%;text-align:center;margin-bottom:10px;display:flex;justify-content:center;align-items:center;">
+    <span id="jarreer-dev-name" style="font-family:'Orbitron',sans-serif;font-size:2.2rem;font-weight:bold;color:#00ff66;text-shadow:0 0 16px #00ff66,0 0 32px #00ff66;letter-spacing:2px;display:inline-block;">JARREER DEVELOPER</span>
   </div>
   <svg viewBox="0 0 480 360" width="100%" height="auto" style="display:block;">
     <defs>
@@ -444,43 +444,42 @@
     <circle cx="355" cy="190" r="8" fill="#00ff00" stroke="#222" stroke-width="2.5" filter="url(#greenGlow)"/>
     <!-- Keyboard -->
     <rect x="90" y="240" width="180" height="36" rx="8" fill="url(#rgbCycle)" stroke="#aaa" stroke-width="2.5" filter="url(#glow)"/>
-    <!-- Keyboard keys (fit inside base) -->
+    <!-- Keyboard keys (fit inside base, fixed) -->
     <g>
-      <!-- 1st row -->
-      <rect x="100" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="118" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="136" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="154" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="172" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="190" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="208" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="226" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="244" y="247" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <!-- 2nd row -->
-      <rect x="105" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="123" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="141" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="159" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="177" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="195" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="213" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="231" y="257" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <!-- 3rd row -->
-      <rect x="110" y="267" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="128" y="267" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="146" y="267" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="164" y="267" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="182" y="267" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="200" y="267" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="218" y="267" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <!-- 4th row -->
-      <rect x="115" y="277" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="133" y="277" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="151" y="277" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="169" y="277" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="187" y="277" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="205" y="277" width="16" height="7" rx="2" fill="#e0e0e0"/>
-      <rect x="223" y="277" width="16" height="7" rx="2" fill="#e0e0e0"/>
+      <!-- 1st row: 9 keys -->
+      <rect x="102" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="119" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="136" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="153" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="170" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="187" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="204" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="221" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="238" y="247" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <!-- 2nd row: 8 keys -->
+      <rect x="110" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="127" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="144" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="161" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="178" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="195" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="212" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="229" y="257" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <!-- 3rd row: 7 keys -->
+      <rect x="118" y="267" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="135" y="267" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="152" y="267" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="169" y="267" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="186" y="267" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="203" y="267" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="220" y="267" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <!-- 4th row: 6 keys -->
+      <rect x="126" y="277" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="143" y="277" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="160" y="277" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="177" y="277" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="194" y="277" width="15" height="7" rx="2" fill="#e0e0e0"/>
+      <rect x="211" y="277" width="15" height="7" rx="2" fill="#e0e0e0"/>
     </g>
     <!-- Mouse -->
     <ellipse cx="270" cy="290" rx="14" ry="10" fill="url(#rgbCycle)" stroke="#aaa" stroke-width="2.5" filter="url(#glow)"/>
@@ -586,18 +585,21 @@ window.addEventListener('load', () => {
   }, 2000);
 });
 </script>
-<!-- Glowing Cursor/Scroll Effect (Advanced RGB Multi-Color with trailing line) -->
+<!-- Glowing Cursor/Scroll Effect (Advanced RGB Multi-Color with trailing line and stary effect) -->
 <div id="glow-cursor" style="position:fixed;top:0;left:0;width:100vw;height:100vh;pointer-events:none;z-index:99999;">
   <svg id="glow-svg" width="100vw" height="100vh" style="position:absolute;top:0;left:0;pointer-events:none;overflow:visible;">
-    <polyline id="glow-trail" fill="none" stroke="rgba(0,255,200,0.25)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline id="glow-trail" fill="none" stroke="rgba(0,255,200,0.18)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Stary effect: random white dots along the trail -->
+    <g id="glow-stars"></g>
   </svg>
-  <div id="glow-circle" style="position:absolute;width:110px;height:110px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,255,0.25) 0%,rgba(0,0,0,0.0) 80%);filter:blur(24px);mix-blend-mode:screen;transition:background 0.3s,opacity 0.3s;"></div>
+  <div id="glow-circle" style="position:absolute;width:90px;height:90px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,255,0.25) 0%,rgba(0,0,0,0.0) 80%);filter:blur(18px);mix-blend-mode:screen;transition:background 0.3s,opacity 0.3s;"></div>
 </div>
 <script>
 (function() {
   const glow = document.getElementById('glow-cursor');
   const circle = document.getElementById('glow-circle');
   const trail = document.getElementById('glow-trail');
+  const stars = document.getElementById('glow-stars');
   let mouseX = window.innerWidth/2, mouseY = window.innerHeight/2;
   let targetX = mouseX, targetY = mouseY;
   let colorPhase = 0;
@@ -606,14 +608,14 @@ window.addEventListener('load', () => {
   const trailPoints = Array.from({length: 18}, () => [mouseX, mouseY]);
   // Mouse move
   document.addEventListener('mousemove', e => {
-    targetX = e.clientX - 55;
-    targetY = e.clientY - 55;
+    targetX = e.clientX - 45;
+    targetY = e.clientY - 45;
   });
   // Touch move
   document.addEventListener('touchmove', e => {
     if (e.touches.length > 0) {
-      targetX = e.touches[0].clientX - 55;
-      targetY = e.touches[0].clientY - 55;
+      targetX = e.touches[0].clientX - 45;
+      targetY = e.touches[0].clientY - 45;
     }
   });
   // Click/tap for burst glow
@@ -639,13 +641,22 @@ window.addEventListener('load', () => {
     else if (Date.now() - lastClick < 600) burst = 1.4;
     // Advanced radial gradient
     circle.style.background = `radial-gradient(circle,hsla(${hue1},100%,60%,${0.32*burst}) 0%,hsla(${hue2},100%,55%,${0.18*burst}) 40%,hsla(${hue3},100%,50%,0.0) 80%)`;
-    circle.style.filter = `blur(${24*burst}px)`;
+    circle.style.filter = `blur(${18*burst}px)`;
     // Trailing line logic
-    trailPoints.push([mouseX+55, mouseY+55]);
+    trailPoints.push([mouseX+45, mouseY+45]);
     if (trailPoints.length > 18) trailPoints.shift();
     const pointsStr = trailPoints.map(pt => pt.join(",")).join(" ");
     trail.setAttribute('points', pointsStr);
-    trail.setAttribute('stroke', `hsla(${hue1},100%,60%,0.22)`);
+    trail.setAttribute('stroke', `hsla(${hue1},100%,60%,0.18)`);
+    trail.setAttribute('stroke-width', 7);
+    // Stary effect: random white dots along the trail
+    let starSVG = '';
+    for (let i = 2; i < trailPoints.length-2; i+=3) {
+      const [sx, sy] = trailPoints[i];
+      const starSize = Math.random() * 2.2 + 1.2;
+      starSVG += `<circle cx="${sx}" cy="${sy}" r="${starSize}" fill="white" opacity="${0.18 + Math.random()*0.18}"/>`;
+    }
+    stars.innerHTML = starSVG;
     requestAnimationFrame(animate);
   }
   animate();
@@ -660,6 +671,28 @@ window.addEventListener('load', () => {
       circle.style.opacity = '0.38';
     }, 350);
   });
+})();
+</script>
+<!-- RGB Glowing effect for 'Hi, I'm Muhammad Jarreer' -->
+<script>
+(function() {
+  const h1 = document.querySelector('header h1');
+  if (!h1) return;
+  let colorPhase = 0;
+  function animate() {
+    colorPhase += 0.012;
+    const hue1 = (220 + 120 * Math.sin(colorPhase * 1.2)) % 360;
+    const hue2 = (hue1 + 60) % 360;
+    const hue3 = (hue1 + 120) % 360;
+    h1.style.background = `linear-gradient(90deg,hsla(${hue1},100%,60%,1) 0%,hsla(${hue2},100%,55%,1) 50%,hsla(${hue3},100%,50%,1) 100%)`;
+    h1.style.webkitBackgroundClip = 'text';
+    h1.style.webkitTextFillColor = 'transparent';
+    h1.style.backgroundClip = 'text';
+    h1.style.textFillColor = 'transparent';
+    h1.style.textShadow = `0 0 16px hsla(${hue1},100%,60%,0.7),0 0 32px hsla(${hue2},100%,55%,0.5)`;
+    requestAnimationFrame(animate);
+  }
+  animate();
 })();
 </script>
 </body>

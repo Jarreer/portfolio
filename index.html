@@ -45,6 +45,28 @@
 @keyframes fadeOut {
   to { opacity: 0; visibility: hidden; }
 }
+@keyframes logoGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.logo {
+  background: linear-gradient(120deg, #00ffea, #ff00c8, #ffe600, #00ffea);
+  background-size: 300% 300%;
+  animation: logoGradient 3.5s ease-in-out infinite;
+  color: #fff;
+  font-weight: bold;
+  font-family: 'Orbitron';
+  font-size: 1.4em;
+  padding: 6px 10px;
+  border-radius: 50%;
+  box-shadow: 0 0 18px 4px #00ffe6, 0 0 32px 8px #ff00c8, 0 0 12px 2px #ffe600;
+  border: 2.5px solid #fff;
+  transition: box-shadow 0.3s;
+}
+.logo:hover, .logo:focus {
+  box-shadow: 0 0 32px 8px #ff00c8, 0 0 48px 12px #00ffe6, 0 0 18px 4px #ffe600;
+}
   </style>
 </head>
 <body>
@@ -379,17 +401,16 @@
 
   <section id="about">
     <h2>About Me</h2>
-    <div class="about-container">
-      <img src="assets/images/profile.png" alt="Muhammad Jarreer" class="profile-pic" style="object-fit:cover;width:150px;height:150px;border-radius:10px;border:3px solid #00bcd4;box-shadow:0 0 15px rgba(0,188,212,0.7);">
-      <div class="about-text">
-        <p>
-      I'm <strong>Muhammad Jarreer</strong>, a dedicated Machine Learning developer with advanced Python knowledge and strong experience in C#.
-      I specialize in building data-driven solutions, optimizing algorithms, and creating high-quality software with clean architecture.
-    </p>
-    <p>
-      My goal is to bridge the gap between technology and real-world utility, delivering efficient and meaningful applications.
-        </p>
-        <a class="download-btn" href="Jarreer_Resume.pdf" download>⬇ Download Resume</a>
+    <div class="about-container" style="display: flex; align-items: center; gap: 30px;">
+      <!-- Remove profile picture -->
+      <div class="about-text" style="flex:1;">
+        <div class="about-animated-bg" style="background:#181b22;color:#fff;padding:28px 28px 24px 28px;border-radius:18px;box-shadow:0 4px 24px rgba(0,0,0,0.18);transition:transform 0.22s cubic-bezier(.4,2,.3,1),box-shadow 0.22s;cursor:pointer;">
+          <p style="margin:0;font-size:1.13em;line-height:1.7;letter-spacing:0.01em;">
+            I’m Muhammad Jarreer, a dedicated Machine Learning and Software Developer with a strong foundation in intelligent systems, full-stack development, and practical AI applications. My work blends technical depth with real-world relevance—whether I’m building GPT-powered business assistants, emotion-aware speech analysis tools, or smart resume screeners that make hiring smarter and faster.<br><br>
+            I work comfortably across a wide range of technologies, including Python, C#, JavaScript, TensorFlow, Scikit-learn, OpenCV, and Streamlit. From backend APIs and responsive frontends to neural networks and NLP pipelines, I design and deliver systems that are both efficient and impactful. I’m also experienced with version control (Git/GitHub), database systems like SQL and Firebase, and UI/UX principles that make every product intuitive and polished.<br><br>
+            Currently studying Computer Science, Mathematics, and Physics at Alpha College, I’m constantly pushing myself to learn more—diving deeper into areas like generative AI, human-computer interaction, and algorithmic problem-solving. I approach every project with a builder’s mindset and a commitment to excellence. For me, it’s not just about writing code—it’s about creating smart, scalable solutions that actually move things forward.
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -705,6 +726,27 @@ window.addEventListener('load', () => {
   const logoJ = document.querySelector('.logo');
   if (logoJ) animateRGBText(logoJ);
 })();
+</script>
+<!-- Animated pop-up effect for About Me dark area -->
+<script>
+document.querySelectorAll('.about-animated-bg').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    el.style.transform = 'scale(1.045)';
+    el.style.boxShadow = '0 8px 36px 0 rgba(0,255,180,0.18), 0 2px 24px 0 rgba(0,0,0,0.22)';
+  });
+  el.addEventListener('mouseleave', () => {
+    el.style.transform = 'scale(1)';
+    el.style.boxShadow = '0 4px 24px rgba(0,0,0,0.18)';
+  });
+  el.addEventListener('focus', () => {
+    el.style.transform = 'scale(1.045)';
+    el.style.boxShadow = '0 8px 36px 0 rgba(0,255,180,0.18), 0 2px 24px 0 rgba(0,0,0,0.22)';
+  });
+  el.addEventListener('blur', () => {
+    el.style.transform = 'scale(1)';
+    el.style.boxShadow = '0 4px 24px rgba(0,0,0,0.18)';
+  });
+});
 </script>
 </body>
 </html>

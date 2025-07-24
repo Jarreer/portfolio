@@ -548,7 +548,7 @@
         </div>
       </div>
       <div class="project">
-      <img src="screenerai.jpg" alt="Smart Resume Screener Screenshot" style="width:400px; height:auto; display:block;">
+      <img src="screenerai.jpg" alt="Smart Resume Screener Screenshot" class="fit-image">
       <div class="project-content">
         <h3>📄 Smart Resume Screener</h3>
         <p>An intelligent resume analysis tool that uses machine learning and GPT-based summarization to evaluate resumes, extract skills, and score candidates. Supports PDF uploads and provides recruiter-friendly outputs.</p>
@@ -805,6 +805,12 @@ document.querySelectorAll('.about-animated-bg').forEach(el => {
 .project > * {
   position: relative;
   z-index: 1;
+}
+/* Make Smart Resume Screener project card fit its image height */
+.fit-image {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 </style>
 </body>

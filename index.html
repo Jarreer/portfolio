@@ -71,10 +71,10 @@
 </head>
 <body>
 <div id="preloader" style="position:fixed;top:0;left:0;width:100%;height:100%;background:#000;display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;">
-  <div style="color:#0073b1;font-family:'Segoe UI',sans-serif;font-size:2rem;margin-bottom:30px;letter-spacing:2px;font-weight:bold;">Jarreer Developer</div>
+  <div style="color:#1a2a4f;font-family:'Segoe UI',sans-serif;font-size:2rem;margin-bottom:30px;letter-spacing:2px;font-weight:bold;text-shadow:0 0 12px #1a2a4f77;">Jarreer Developer</div>
   <div style="width:320px;max-width:80vw;">
-    <div id="progress-bar-bg" style="width:100%;height:8px;background:#222;border-radius:4px;overflow:hidden;">
-      <div id="progress-bar-fill" style="width:0;height:100%;background:#0073b1;transition:width 1.5s cubic-bezier(.4,0,.2,1);"></div>
+    <div id="progress-bar-bg" style="width:100%;height:8px;background:#222;border-radius:4px;overflow:hidden;box-shadow:0 0 16px 2px #1a2a4f55;">
+      <div id="progress-bar-fill" style="width:0;height:100%;background:#1a2a4f;box-shadow:0 0 12px 2px #1a2a4faa;transition:width 1.5s cubic-bezier(.4,0,.2,1);"></div>
     </div>
   </div>
 </div>
@@ -253,16 +253,24 @@
       position: relative;
     }
     .project:hover {
-      animation: project-shake 0.5s infinite;
-      box-shadow: 0 8px 35px rgba(0,0,0,0.8);
+      animation: project-shake 0.5s infinite, sparkleGlow 1.2s alternate infinite;
+      box-shadow: 0 0 32px 8px #ff00c8, 0 0 48px 12px #00ffe6, 0 0 18px 4px #ffe600, 0 0 60px 20px #fff7, 0 0 80px 30px #00ffe6aa;
+      border: 3px solid #fff;
     }
 
-    @keyframes project-shake {
-      0% { transform: translateY(-6px) rotate(0deg); }
-      25% { transform: translateY(-6px) rotate(1deg); }
-      50% { transform: translateY(-6px) rotate(0eg); }
-      75% { transform: translateY(-6px) rotate(-1deg); }
-      100% { transform: translateY(-6px) rotate(0deg); }
+    @keyframes sparkleGlow {
+      0% {
+        box-shadow: 0 0 32px 8px #ff00c8, 0 0 48px 12px #00ffe6, 0 0 18px 4px #ffe600, 0 0 60px 20px #fff7, 0 0 80px 30px #00ffe6aa;
+        filter: brightness(1.1) drop-shadow(0 0 12px #fff) drop-shadow(0 0 24px #00ffe6);
+      }
+      50% {
+        box-shadow: 0 0 48px 16px #00ffe6, 0 0 64px 24px #ff00c8, 0 0 24px 8px #ffe600, 0 0 80px 40px #fff7, 0 0 100px 50px #ff00c8aa;
+        filter: brightness(1.25) drop-shadow(0 0 24px #fff) drop-shadow(0 0 36px #ff00c8);
+      }
+      100% {
+        box-shadow: 0 0 32px 8px #ff00c8, 0 0 48px 12px #00ffe6, 0 0 18px 4px #ffe600, 0 0 60px 20px #fff7, 0 0 80px 30px #00ffe6aa;
+        filter: brightness(1.1) drop-shadow(0 0 12px #fff) drop-shadow(0 0 24px #00ffe6);
+      }
     }
     .project img {
       width: 100%;
@@ -560,14 +568,33 @@
 
   <section id="contact">
     <h2>Contact</h2>
-    <p>
-      Let's connect and collaborate on exciting tech ideas.
-    </p>
-    <p>
-      📧 <a href="mailto:jareerfootball7@gmail.com">jareerfootball7@gmail.com</a><br>
-      💻 <a href="https://github.com/Jarreer" target="_blank">github.com/Jarreer</a><br>
-      📞 <a href="https://wa.me/923343323656" target="_blank">+92 334 3323656 (WhatsApp)</a>
-    </p>
+    <div class="contact-container" style="display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; justify-content: center;">
+      <div class="contact-info" style="flex:1; min-width:260px; max-width:350px; background:#181b22; border-radius:18px; box-shadow:0 4px 24px rgba(0,0,0,0.18); padding:28px 24px 24px 24px; margin-bottom:24px;">
+        <h3 style="margin-top:0; color:#00bcd4;">Let's connect and collaborate!</h3>
+        <p style="margin-bottom:18px;">I'm open to exciting tech ideas, collaborations, and opportunities. Reach out via any channel below or send me a direct message.</p>
+        <div style="margin-bottom:10px;">
+          <span style="font-size:1.1em;">📧</span> <a href="mailto:jareerfootball7@gmail.com">jareerfootball7@gmail.com</a>
+        </div>
+        <div style="margin-bottom:10px;">
+          <span style="font-size:1.1em;">💻</span> <a href="https://github.com/Jarreer" target="_blank">github.com/Jarreer</a>
+        </div>
+        <div style="margin-bottom:10px;">
+          <span style="font-size:1.1em;">🔗</span> <a href="https://www.linkedin.com/in/muhammad-jarreer-2a63a3372/" target="_blank">LinkedIn</a>
+        </div>
+        <div style="margin-bottom:10px;">
+          <span style="font-size:1.1em;">📞</span> <a href="https://wa.me/923343323656" target="_blank">+92 334 3323656 (WhatsApp)</a>
+        </div>
+      </div>
+      <form class="contact-form" style="flex:1; min-width:280px; max-width:420px; background:#181b22; border-radius:18px; box-shadow:0 4px 24px rgba(0,0,0,0.18); padding:28px 24px 24px 24px; display:flex; flex-direction:column; gap:18px;" autocomplete="off" onsubmit="event.preventDefault(); this.querySelector('.form-success').style.display='block'; this.reset();">
+        <h3 style="margin-top:0; color:#00bcd4;">Send Me a Message</h3>
+        <input type="text" name="name" placeholder="Full Name *" required style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
+        <input type="email" name="email" placeholder="Email Address *" required style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
+        <input type="text" name="subject" placeholder="Subject" style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
+        <textarea name="message" placeholder="Message *" required rows="4" style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; resize:vertical; margin-bottom:4px;"></textarea>
+        <button type="submit" style="padding:12px 0; border-radius:8px; background:#00bcd4; color:#000; font-weight:bold; font-size:1.1em; border:none; cursor:pointer; transition:background 0.3s;">Send Message</button>
+        <div class="form-success" style="display:none; color:#00ff66; font-weight:bold; margin-top:8px;">Thank you! Your message has been sent.</div>
+      </form>
+    </div>
   </section>
 
   <footer>

@@ -585,14 +585,16 @@
           <span style="font-size:1.1em;">📞</span> <a href="https://wa.me/923343323656" target="_blank">+92 334 3323656 (WhatsApp)</a>
         </div>
       </div>
-      <form class="contact-form" style="flex:1; min-width:280px; max-width:420px; background:#181b22; border-radius:18px; box-shadow:0 4px 24px rgba(0,0,0,0.18); padding:28px 24px 24px 24px; display:flex; flex-direction:column; gap:18px;" autocomplete="off" onsubmit="event.preventDefault(); this.querySelector('.form-success').style.display='block'; this.reset();">
+      <form class="contact-form" id="contactForm" action="https://formspree.io/f/xdkdzgkg" method="POST" style="flex:1; min-width:280px; max-width:420px; background:#181b22; border-radius:18px; box-shadow:0 4px 24px rgba(0,0,0,0.18); padding:28px 24px 24px 24px; display:flex; flex-direction:column; gap:18px;" autocomplete="off">
         <h3 style="margin-top:0; color:#00bcd4;">Send Me a Message</h3>
-        <input type="text" name="name" placeholder="Full Name *" required style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
-        <input type="email" name="email" placeholder="Email Address *" required style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
-        <input type="text" name="subject" placeholder="Subject" style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
-        <textarea name="message" placeholder="Message *" required rows="4" style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; resize:vertical; margin-bottom:4px;"></textarea>
-        <button type="submit" style="padding:12px 0; border-radius:8px; background:#00bcd4; color:#000; font-weight:bold; font-size:1.1em; border:none; cursor:pointer; transition:background 0.3s;">Send Message</button>
-        <div class="form-success" style="display:none; color:#00ff66; font-weight:bold; margin-top:8px;">Thank you! Your message has been sent.</div>
+        <input type="text" name="name" id="name" placeholder="Full Name *" required style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
+        <input type="email" name="email" id="email" placeholder="Email Address *" required style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
+        <input type="text" name="subject" id="subject" placeholder="Subject" style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; margin-bottom:4px;">
+        <textarea name="message" id="message" placeholder="Message *" required rows="4" style="padding:12px 14px; border-radius:8px; border:none; background:#23243a; color:#fff; font-size:1em; outline:none; resize:vertical; margin-bottom:4px;"></textarea>
+        <input type="hidden" name="_next" value="#contact">
+        <button type="submit" id="submitBtn" style="padding:12px 0; border-radius:8px; background:#00bcd4; color:#000; font-weight:bold; font-size:1.1em; border:none; cursor:pointer; transition:background 0.3s;">Send Message</button>
+        <div class="form-success" id="formSuccess" style="display:none; color:#00ff66; font-weight:bold; margin-top:8px;">Thank you! Your message has been sent.</div>
+        <div class="form-error" id="formError" style="display:none; color:#ff4444; font-weight:bold; margin-top:8px;">Error sending message. Please try again.</div>
       </form>
     </div>
   </section>
@@ -840,5 +842,29 @@ document.querySelectorAll('.about-animated-bg').forEach(el => {
   display: block;
 }
 </style>
+
+<!-- Contact Form Functionality -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const contactForm = document.getElementById('contactForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formSuccess = document.getElementById('formSuccess');
+  const formError = document.getElementById('formError');
+
+  contactForm.addEventListener('submit', function(e) {
+    // Show loading state
+    submitBtn.textContent = 'Sending...';
+    submitBtn.disabled = true;
+    formSuccess.style.display = 'none';
+    formError.style.display = 'none';
+  });
+
+  // Handle form submission response
+  contactForm.addEventListener('submit', function(e) {
+    // Let the form submit normally to Formspree
+    // The success/error handling will be done by Formspree's redirect
+  });
+});
+</script>
 </body>
 </html>

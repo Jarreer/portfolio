@@ -412,6 +412,433 @@
       border: 3px solid #00bcd4;
       box-shadow: 0 0 15px rgba(0, 188, 212, 0.7);
     }
+
+    /* Mobile Responsive Styles */
+    @media (max-width: 768px) {
+      header {
+        padding: 80px 15px 30px;
+      }
+      
+      header h1 {
+        font-size: 2.5em;
+        line-height: 1.2;
+      }
+      
+      header .subheading {
+        font-size: 1em;
+        margin-top: 15px;
+      }
+      
+      .summary-highlight {
+        margin-top: 30px;
+        font-size: 1em;
+        padding: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      
+      .topbar {
+        top: 15px;
+        left: 15px;
+      }
+      
+      .contacts {
+        top: 15px;
+        right: 15px;
+        gap: 10px;
+      }
+      
+      .contacts a {
+        font-size: 1em;
+      }
+      
+      nav {
+        flex-wrap: wrap;
+        gap: 15px;
+        padding: 10px 0;
+      }
+      
+      nav a {
+        font-size: 0.9em;
+        padding: 5px 10px;
+      }
+      
+      section {
+        padding: 40px 15px;
+      }
+      
+      h2 {
+        font-size: 1.8em;
+        text-align: center;
+      }
+      
+      .project-gallery {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      
+      .project-content {
+        padding: 15px;
+      }
+      
+      .project-content h3 {
+        font-size: 1.2em;
+      }
+      
+      .project-content p {
+        font-size: 0.9em;
+      }
+      
+      .skills-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 15px;
+      }
+      
+      .skill-item img {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .skill-item p {
+        font-size: 0.8em;
+      }
+      
+      .about-container {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+      }
+      
+      .profile-pic {
+        width: 200px;
+        height: 200px;
+      }
+      
+      .hero-actions {
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 25px;
+      }
+      
+      .hero-actions a {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+      }
+      
+      .hero-stats {
+        gap: 20px;
+        margin-top: 30px;
+      }
+      
+      .stat-number {
+        font-size: 2em !important;
+      }
+      
+      .stat-label {
+        font-size: 0.8em !important;
+      }
+      
+      .goals-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .goal-card {
+        padding: 20px;
+      }
+      
+      .resume-actions {
+        flex-direction: column;
+        gap: 12px;
+      }
+      
+      .resume-actions a {
+        width: 100%;
+        text-align: center;
+      }
+      
+      .resume-highlights {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .contact-container {
+        flex-direction: column;
+        gap: 20px;
+      }
+      
+      .contact-info, .contact-form {
+        min-width: auto;
+        max-width: none;
+        width: 100%;
+      }
+      
+      .contact-form input,
+      .contact-form textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+      }
+      
+      /* 3D Model adjustments */
+      #retro-pc-3d {
+        top: -20px;
+        margin-bottom: 20px;
+      }
+      
+      #jarreer-dev-name {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+      }
+      
+      /* FAQ adjustments */
+      .faq-item {
+        padding: 20px;
+      }
+      
+      .faq-item h4 {
+        font-size: 1.1em;
+      }
+      
+      /* Goals section adjustments */
+      .goals-intro h3 {
+        font-size: 1.3em;
+      }
+      
+      .goals-footer {
+        padding: 20px;
+      }
+      
+      /* Resume section adjustments */
+      .resume-intro {
+        padding: 24px 20px;
+      }
+      
+      .resume-intro h3 {
+        font-size: 1.3em;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2em;
+      }
+      
+      header .subheading {
+        font-size: 0.9em;
+      }
+      
+      .summary-highlight {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      
+      nav {
+        gap: 10px;
+      }
+      
+      nav a {
+        font-size: 0.8em;
+        padding: 4px 8px;
+      }
+      
+      section {
+        padding: 30px 10px;
+      }
+      
+      h2 {
+        font-size: 1.6em;
+      }
+      
+      .project-content {
+        padding: 12px;
+      }
+      
+      .project-content h3 {
+        font-size: 1.1em;
+      }
+      
+      .project-content p {
+        font-size: 0.85em;
+      }
+      
+      .skills-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 12px;
+      }
+      
+      .skill-item img {
+        width: 45px;
+        height: 45px;
+      }
+      
+      .skill-item p {
+        font-size: 0.75em;
+      }
+      
+      .profile-pic {
+        width: 180px;
+        height: 180px;
+      }
+      
+      .hero-stats {
+        gap: 15px;
+      }
+      
+      .stat-number {
+        font-size: 1.8em !important;
+      }
+      
+      .stat-label {
+        font-size: 0.75em !important;
+      }
+      
+      .goal-card {
+        padding: 18px;
+      }
+      
+      .goal-card h4 {
+        font-size: 1.1em;
+      }
+      
+      .goal-card p {
+        font-size: 0.9em;
+      }
+      
+      .resume-intro {
+        padding: 20px 15px;
+      }
+      
+      .resume-intro h3 {
+        font-size: 1.2em;
+      }
+      
+      .resume-intro p {
+        font-size: 0.95em;
+      }
+      
+      .faq-item {
+        padding: 18px;
+      }
+      
+      .faq-item h4 {
+        font-size: 1em;
+      }
+      
+      .faq-item p {
+        font-size: 0.9em;
+      }
+      
+      .contact-info, .contact-form {
+        padding: 20px 15px;
+      }
+      
+      .contact-info h3, .contact-form h3 {
+        font-size: 1.2em;
+      }
+      
+      .contact-info p {
+        font-size: 0.9em;
+      }
+      
+      #jarreer-dev-name {
+        font-size: 1.5rem;
+      }
+      
+      /* About section text adjustments */
+      .about-animated-bg p {
+        font-size: 1em;
+        line-height: 1.6;
+      }
+      
+      /* Goals intro adjustments */
+      .goals-intro h3 {
+        font-size: 1.2em;
+      }
+      
+      .goals-intro p {
+        font-size: 0.95em;
+      }
+      
+      /* Resume highlights adjustments */
+      .highlight-card {
+        padding: 20px;
+      }
+      
+      .highlight-card h4 {
+        font-size: 1em;
+      }
+      
+      .highlight-card p {
+        font-size: 0.85em;
+      }
+    }
+    
+    /* Tablet adjustments */
+    @media (min-width: 769px) and (max-width: 1024px) {
+      header h1 {
+        font-size: 3em;
+      }
+      
+      .project-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+      
+      .about-container {
+        gap: 25px;
+      }
+      
+      .profile-pic {
+        width: 220px;
+        height: 220px;
+      }
+      
+      .hero-actions {
+        gap: 15px;
+      }
+      
+      .hero-stats {
+        gap: 30px;
+      }
+    }
+    
+    /* Ensure touch-friendly interactions on mobile */
+    @media (max-width: 768px) {
+      .project:hover {
+        animation: none;
+        transform: none;
+      }
+      
+      .skill-item:hover {
+        transform: none;
+      }
+      
+      .skill-item:hover img {
+        animation: none;
+      }
+      
+      /* Make buttons more touch-friendly */
+      .project-content a.btn,
+      .download-btn,
+      .hero-actions a,
+      .resume-actions a,
+      .contact-form button {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      /* Improve form usability on mobile */
+      .contact-form input,
+      .contact-form textarea {
+        min-height: 44px;
+        padding: 12px 14px;
+      }
+      
+      .contact-form textarea {
+        min-height: 100px;
+      }
+    }
   </style>
 </head>
 <body>
